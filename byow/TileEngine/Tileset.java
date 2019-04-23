@@ -35,8 +35,12 @@ public class Tileset {
     public static final TETile TREE = new TETile('♠', Color.green, Color.black, "tree");
 
     //Pokemon Themed
-    public static final TETile PokemonFloor = new TETile('f', Color.GREEN, Color.GREEN, "Pokemon Floor", "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/byow/Core/Resources/floor0.png");
-    public static final TETile PokemonWall = new TETile('w', Color.GREEN, Color.GREEN, "Pokemon wall 2", "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/byow/Core/Resources/wall2LR.png");
+    private static final String A_PREFIX_PATH = "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/byow/Core/Resources/";
+    private static final String N_PREFIX_PATH = "/Users/nhorowitz/Desktop/work/cs61b/sp19-s1177/proj3/byow/Core/Resources/";
+
+    public static final TETile FLOOR_A_0 = new TETile('f', Color.GREEN, Color.GREEN, "Floor", N_PREFIX_PATH + "floor0.png");
+    public static final TETile WALL_A_2_LR = new TETile('w', Color.BLACK, Color.BLACK, "Wall", N_PREFIX_PATH + "wall2LR.png");
+    public static final TETile EMPTY_A_0 = new TETile('e', Color.BLUE, Color.BLUE, "Empty", N_PREFIX_PATH + "empty0.png");
 }
 
 

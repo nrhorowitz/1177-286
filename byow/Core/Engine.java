@@ -3,12 +3,18 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
+import java.util.List;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
-    public static final int HEIGHT = 30;
+    public static final int HEIGHT = 40;
+    private int seed;
+    private static final int NUM_SEED = 1000;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -48,32 +54,56 @@ public class Engine {
         // that works for many different input types.
 
 
+        // 0) Set random seed from input
         // 1) Fill everything with nothing (water XD)
         // 2) Given width and height, create a 2 dimensional int array of zones
-        // n as number of rooms
+        // n as number of rooms   --- dependency on distribution ?
         // 3) Parameters for room dimensions (by floor)   //master data
         // 4) Parameters for hallways between sectors     //master data
         // 5) Add floors  (to final world frame)
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
         // 7) Big flex owo
 
-        // 1) done
+        int hashCode = Math.floorMod((input.hashCode() * 2017), NUM_SEED);  //2017 some prime p
+        System.out.println(hashCode);
+
         TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
-        fillWater(finalWorldFrame);
-
-
+        fillWater(finalWorldFrame);  // 1) done
+        int[][] numRoomSector = numRoomSector();  // 2)
+        Map<Integer, String> roomCoordinates = computeRoom(numRoomSector);  // 3)
+        List<String> hallCoordinates = computeHall(roomCoordinates);  // 4)
+        addFloors(finalWorldFrame);  // 5)
+        addWalls(finalWorldFrame);  // 6)
         return finalWorldFrame;
     }
 
-    //Need to update later to fill with POKEMON water
-    public static void fillWater(TETile[][] world) {
+    private void fillWater(TETile[][] world) {
         int width = world.length;
         int height = world[0].length;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                world[x][y] = Tileset.WATER; //Update to pokemon water later
+                world[x][y] = Tileset.EMPTY_A_0;
             }
         }
     }
 
+    private int[][] numRoomSector() {
+        return null;
+    }
+
+    private Map<Integer, String> computeRoom(int[][] numRoomSector) {
+        return new HashMap<Integer, String>();
+    }
+
+    private List<String> computeHall(Map<Integer, String> roomCoordinates) {
+        return new LinkedList<String>();
+    }
+
+    private void addFloors(TETile[][] finalWorldFrame) {
+        return;
+    }
+
+    private void addWalls(TETile[][] finalWorldFrame) {
+        return;
+    }
 }
