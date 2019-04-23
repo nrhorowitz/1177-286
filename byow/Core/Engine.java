@@ -3,6 +3,8 @@ package byow.Core;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
+
+import edu.princeton.cs.algs4.StdRandom;
 import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
@@ -13,8 +15,6 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
-    private int seed;
-    private static final int NUM_SEED = 1000;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -64,9 +64,7 @@ public class Engine {
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
         // 7) Big flex owo
 
-        int hashCode = Math.floorMod((input.hashCode() * 2017), NUM_SEED);  //2017 some prime p
-        System.out.println(hashCode);
-
+        this.seed(input);  // 0)
         TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
@@ -74,7 +72,13 @@ public class Engine {
         List<String> hallCoordinates = computeHall(roomCoordinates);  // 4)
         addFloors(finalWorldFrame);  // 5)
         addWalls(finalWorldFrame);  // 6)
+        addWater(finalWorldFrame);  // 7)
         return finalWorldFrame;
+    }
+
+    private void seed(String input) {
+        long l = (long) input.hashCode();
+        StdRandom.setSeed(l);
     }
 
     private void fillWater(TETile[][] world) {
@@ -88,13 +92,34 @@ public class Engine {
     }
 
     private int[][] numRoomSector() {
-        return null;
+        int width = StdRandom.uniform(6, 9);
+        int height = StdRandom.uniform(3, 5);
+        int[][] returnArray = new int[height][width];
+        for (int y = 0; y < height; y += 1) {
+            for (int x = 0; x < width; x += 1) {
+                boolean zero = StdRandom.uniform(0, 8) == 0;
+                if (zero) {
+                    returnArray[y][x] = 0;
+                } else {
+                    returnArray[y][x] = StdRandom.uniform(1, 3);
+                }
+            }
+        }
+        return returnArray;
     }
 
     private Map<Integer, String> computeRoom(int[][] numRoomSector) {
         return new HashMap<Integer, String>();
     }
 
+    /**
+     * Each index corresponds to a room.
+     * 0+2h ....
+     * 0+h 1+h 2+h ...
+     * 0   1   2   ...
+     * @param roomCoordinates
+     * @return
+     */
     private List<String> computeHall(Map<Integer, String> roomCoordinates) {
         return new LinkedList<String>();
     }
@@ -104,6 +129,10 @@ public class Engine {
     }
 
     private void addWalls(TETile[][] finalWorldFrame) {
+        return;
+    }
+
+    private void addWater(TETile[][] finalWorldFrame) {
         return;
     }
 }
