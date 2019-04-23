@@ -33,6 +33,10 @@ public class Tileset {
     public static final TETile SAND = new TETile('▒', Color.yellow, Color.black, "sand");
     public static final TETile MOUNTAIN = new TETile('▲', Color.gray, Color.black, "mountain");
     public static final TETile TREE = new TETile('♠', Color.green, Color.black, "tree");
+
+    //Pokemon Themed
+    public static final TETile PokemonFloor = new TETile('f', Color.GREEN, Color.GREEN, "Pokemon Floor", "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/byow/Core/Resources/floor0.png");
+    public static final TETile PokemonWall = new TETile('w', Color.GREEN, Color.GREEN, "Pokemon wall 2", "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/byow/Core/Resources/wall2LR.png");
 }
 
 

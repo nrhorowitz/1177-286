@@ -2,6 +2,7 @@ package byow.Core;
 
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
+import byow.TileEngine.Tileset;
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -54,10 +55,25 @@ public class Engine {
         // 4) Parameters for hallways between sectors     //master data
         // 5) Add floors  (to final world frame)
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
-        // 7) Big flex
+        // 7) Big flex owo
+
+        // 1) done
+        TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
+        fillWater(finalWorldFrame);
 
 
-        TETile[][] finalWorldFrame = null;
         return finalWorldFrame;
     }
+
+    //Need to update later to fill with POKEMON water
+    public static void fillWater(TETile[][] world) {
+        int width = world.length;
+        int height = world[0].length;
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                world[x][y] = Tileset.WATER; //Update to pokemon water later
+            }
+        }
+    }
+
 }
