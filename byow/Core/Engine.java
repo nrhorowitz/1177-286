@@ -15,6 +15,10 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
+    Map<Integer, String> rooms;
+    public int totalSectors;
+
+
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -68,19 +72,27 @@ public class Engine {
         TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
-        Map<Integer, String> roomCoordinates = computeRoom(numRoomSector);  // 3)
-        List<String> hallCoordinates = computeHall(roomCoordinates);  // 4)
+        rooms = computeRoom(numRoomSector);  // 3)
+        List<String> hallCoordinates = computeHall(numRoomSector);  // 4)
         addFloors(finalWorldFrame);  // 5)
         addWalls(finalWorldFrame);  // 6)
         addWater(finalWorldFrame);  // 7)
         return finalWorldFrame;
     }
 
+    /**
+     * Seed sets StdRandom to the input to create pseudorandom generation.
+     * @param input of primitive type String
+     */
     private void seed(String input) {
         long l = (long) input.hashCode();
         StdRandom.setSeed(l);
     }
 
+    /**
+     * FillWater initializes world with default water tiles.
+     * @param world of type TETile[][]
+     */
     private void fillWater(TETile[][] world) {
         int width = world.length;
         int height = world[0].length;
@@ -91,25 +103,62 @@ public class Engine {
         }
     }
 
+    /**
+     * NumRoomSector seeds each sector with a random number of rooms.
+     * Rooms may overlap
+     * TODO: make sure rooms are connected for n > 1 rooms
+     * @return array of room counts by sector of type int[][]
+     */
     private int[][] numRoomSector() {
         int width = StdRandom.uniform(6, 9);
         int height = StdRandom.uniform(3, 5);
+        totalSectors = width * height;
         int[][] returnArray = new int[height][width];
         for (int y = 0; y < height; y += 1) {
             for (int x = 0; x < width; x += 1) {
-                boolean zero = StdRandom.uniform(0, 8) == 0;
+                boolean zero = StdRandom.uniform(0, 2) == 0;
                 if (zero) {
                     returnArray[y][x] = 0;
                 } else {
-                    returnArray[y][x] = StdRandom.uniform(1, 3);
+                    returnArray[y][x] = StdRandom.uniform(1, 5);
                 }
             }
         }
         return returnArray;
     }
 
+    /**
+     * ComputeRoom returns mapping of sector index to string containing coordinates.
+     * @param numRoomSector number of rooms per sector of type int[][]
+     * @return mapping of type Map<Integer, String>
+     */
     private Map<Integer, String> computeRoom(int[][] numRoomSector) {
-        return new HashMap<Integer, String>();
+        Map<Integer, String> returnMap = new HashMap<Integer, String>();
+        int h = numRoomSector.length;
+        int w = numRoomSector[0].length;
+        int hBound = HEIGHT / h;
+        int hRem = HEIGHT - (h * hBound); //extra length to add to one box
+        int wBound = WIDTH / w;
+        int wRem = WIDTH - (w * wBound); //extra length to add to one box
+        int hExtendedIndex = StdRandom.uniform(0, h);
+        int wExtendedIndex = StdRandom.uniform(0, w);
+        //create boxes (y,x)
+        for (int i = 0; i < h; i += 1) {
+            for (int j = 0; j < w; j += 1) {
+                for (int count = 0; count < numRoomSector[i][j]; count += 1) {
+                    int bot = StdRandom.uniform((i * hBound) + 1, ((i + 1) * hBound) - 4);
+                    int left = StdRandom.uniform((j * wBound) + 1, ((j + 1) * wBound) - 4);
+                    int top = StdRandom.uniform(bot + 1, ((i + 1) * hBound) - 1);
+                    int right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
+                    if (returnMap.containsKey((w * i) + j)) {
+                        returnMap.put((w * i) + j, returnMap.get((w * i) + j) + bot + "_" + left + "_" + top + "_" + right + "_");
+                    } else {
+                        returnMap.put((w * i) + j, bot + "_" + left + "_" + top + "_" + right + "_");
+                    }
+                }
+            }
+        }
+        return returnMap;
     }
 
     /**
@@ -117,21 +166,145 @@ public class Engine {
      * 0+2h ....
      * 0+h 1+h 2+h ...
      * 0   1   2   ...
-     * @param roomCoordinates
      * @return
      */
-    private List<String> computeHall(Map<Integer, String> roomCoordinates) {
+    private List<String> computeHall(int[][] numRoomSector) {
+        /*
+        int h = numRoomSector.length;
+        int w = numRoomSector[0].length;
+        int hBound = HEIGHT / h;
+        int hRem = HEIGHT - (h * hBound); //extra length to add to one box
+        int wBound = WIDTH / w;
+        int wRem = WIDTH - (w * wBound); //extra length to add to one box
+        //all branches horizontal
+        //only three vertical
+        for (int i = 0; i < w * h; i += w) {
+            if (rooms.containsKey(i)) {
+                String roomData = rooms.get(i);
+                String[] roomDataArray = roomData.split("_");
+                int startMinBot = 1000;
+                int startMaxTop = 0;
+                for (int j = 0; j < roomDataArray.length; j += 1) {
+                    if (Math.floorMod(j, 4) == 0) { //bot
+                        if (bot < startMinBot) {
+                            startMinBot = roomDataArray[j];
+                        }
+                    } else if (Math.floorMod(j, 4) == 2) { //top
+                        if (top > startMaxBot) {
+                            startMaxBot = roomDataArray[j];
+                        }
+                    }
+                }
+                //check for room after
+            }
+
+        }*///dont have to use, this approach is probably bad
+
         return new LinkedList<String>();
     }
 
+    /**
+     * AddFloors adds floor tiles to master tile array.
+     * @param finalWorldFrame of type TETile[][]
+     */
     private void addFloors(TETile[][] finalWorldFrame) {
-        return;
+        for (int i = 0; i < totalSectors; i += 1) {
+            if (rooms.containsKey(i)) {
+                String roomData = rooms.get(i);
+                String[] roomDataArray = roomData.split("_");
+                for (int j = 0; j < roomDataArray.length; j += 4) {
+                    int bot = Integer.parseInt(roomDataArray[j + 0]);
+                    int left = Integer.parseInt(roomDataArray[j + 1]);
+                    int top = Integer.parseInt(roomDataArray[j + 2]);
+                    int right = Integer.parseInt(roomDataArray[j + 3]);
+                    for (int y = bot; y <= top; y += 1) {
+                        for (int x = left; x <= right; x += 1) {
+                            finalWorldFrame[x][y] = Tileset.FLOOR_A_0;
+                        }
+                    }
+                }
+            }
+        }
     }
 
+    /**
+     * Adjacent returns array of size 4
+     * Order - left, top, right, bot
+     * 0 - nothing
+     * 1 - a wall
+     * 2 - a floor
+     * @param finalWorldFrame of type TETile[][]
+     * @param h height of current index of primitive type int
+     * @param w width of current index of primitive type int
+     * @return adjacents of type int[]
+     */
+    private int[] adjacent(TETile[][] finalWorldFrame, int h, int w) {
+        int[] returnArray = new int[4];
+        returnArray[0] = 0;
+        returnArray[1] = 0;
+        returnArray[2] = 0;
+        returnArray[3] = 0;
+        if (w - 1 >= 0) {
+            if (finalWorldFrame[w - 1][h].description() == "Floor") {
+                returnArray[0] = 2;
+            } else if (finalWorldFrame[w - 1][h].description() == "Wall") {
+                returnArray[0] = 1;
+            }
+        }
+        if (h + 1 < HEIGHT) {
+            if (finalWorldFrame[w][h + 1].description() == "Floor") {
+                returnArray[1] = 2;
+            } else if (finalWorldFrame[w][h + 1].description() == "Wall") {
+                returnArray[1] = 1;
+            }
+        }
+        if (w + 1 < WIDTH) {
+            if (finalWorldFrame[w + 1][h].description() == "Floor") {
+                returnArray[2] = 2;
+            } else if (finalWorldFrame[w + 1][h].description() == "Wall") {
+                returnArray[2] = 1;
+            }
+        }
+        if (h - 1 >= 0) {
+            if (finalWorldFrame[w][h - 1].description() == "Floor") {
+                returnArray[3] = 2;
+            } else if (finalWorldFrame[w][h - 1].description() == "Wall") {
+                returnArray[3] = 1;
+            }
+        }
+        return returnArray;
+    }
+
+    /**
+     * AddWalls adds wall tiles to master tile array.
+     * Depends on placements of walls
+     * Two passes, one to place walls one to render orientation
+     * @param finalWorldFrame of type TETile[][]
+     */
     private void addWalls(TETile[][] finalWorldFrame) {
-        return;
+        for (int h = 0; h < HEIGHT; h += 1) {
+            for (int w = 0; w < WIDTH; w += 1) {
+                if (!(finalWorldFrame[w][h].description() == "Floor")) {
+                    int[] adjacentData = adjacent(finalWorldFrame, h, w);
+                    boolean foundFloor = false;
+                    for (int direction = 0; direction < 4; direction += 1) {
+                        if (adjacentData[direction] == 2) {
+                            foundFloor = true;
+                        }
+                    }
+                    if (foundFloor) {
+                        finalWorldFrame[w][h] = Tileset.WALL_A_2_LR;
+                    }
+                }
+            }
+        }
     }
 
+    /**
+     * AddWater adds water tiles texture to master tile array.
+     * Depends on placements of walls
+     * @param finalWorldFrame of type TETile[][]
+     */
     private void addWater(TETile[][] finalWorldFrame) {
         return;
     }
