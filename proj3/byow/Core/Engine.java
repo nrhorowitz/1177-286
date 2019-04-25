@@ -133,7 +133,7 @@ public class Engine {
      * @return mapping of type Map<Integer, String>
      */
     private Map<Integer, String> computeRoom(int[][] numRoomSector) {
-        Map<Integer, String> returnMap = new HashMap<Integer, String>();
+        Map<Integer, String> returnMap = new HashMap<>();
         int h = numRoomSector.length;
         int w = numRoomSector[0].length;
         int hBound = HEIGHT / h;
@@ -150,18 +150,50 @@ public class Engine {
                     int left = StdRandom.uniform((j * wBound) + 1, ((j + 1) * wBound) - 4);
                     int top = StdRandom.uniform(bot + 1, ((i + 1) * hBound) - 1);
                     int right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
+                    String temp = bot + "_" + left + "_" + top + "_" + right + "_";
                     if (returnMap.containsKey((w * i) + j)) {
-                        returnMap.put((w * i) + j,
-                                returnMap.get((w * i) + j)
-                                        + bot + "_" + left + "_" + top + "_" + right + "_");
+                        String og = returnMap.get((w * i) + j).substring(0, 8);
+                        while (!overlap(og, temp)) {
+                            bot = StdRandom.uniform((i * hBound) + 1, ((i + 1) * hBound) - 4);
+                            left = StdRandom.uniform((j * wBound) + 1, ((j + 1) * wBound) - 4);
+                            top = StdRandom.uniform(bot + 1, ((i + 1) * hBound) - 1);
+                            right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
+                            temp = bot + "_" + left + "_" + top + "_" + right + "_";
+                        }
+                        returnMap.put((w * i) + j, returnMap.get((w * i) + j) + temp);
                     } else {
-                        returnMap.put((w * i) + j,
-                                bot + "_" + left + "_" + top + "_" + right + "_");
+                        returnMap.put((w * i) + j, temp);
                     }
                 }
             }
         }
         return returnMap;
+    }
+
+    /**
+     * Overlap returns whether or not the two rooms overlap each other.
+     * @param first first room in the query
+     * @param second second room in the query
+     * @return boolean, true if overlap false if doesn't
+     */
+    private static boolean overlap(String first, String second) {
+        String[] firstData = first.split("_");
+        String[] secondData = second.split("_");
+        int firstB = Integer.parseInt(firstData[0]);
+        int firstL = Integer.parseInt(firstData[1]);
+        int firstT = Integer.parseInt(firstData[2]);
+        int firstR = Integer.parseInt(firstData[3]);
+
+        int secondB = Integer.parseInt(secondData[0]);
+        int secondL = Integer.parseInt(secondData[1]);
+        int secondT = Integer.parseInt(secondData[2]);
+        int secondR = Integer.parseInt(secondData[3]);
+
+        if (Math.min(firstT, secondT) > Math.max(firstB, secondB)
+                && Math.min(firstR, secondR) > Math.max(firstL, secondL)) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -310,5 +342,9 @@ public class Engine {
      */
     private void addWater(TETile[][] finalWorldFrame) {
         return;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(overlap("4_4_6_6_", "4_4_5_5_"));
     }
 }
