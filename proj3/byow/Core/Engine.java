@@ -11,6 +11,8 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import java.awt.Color;
+
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
@@ -81,7 +83,8 @@ public class Engine {
         addFloors(finalWorldFrame);  // 5)
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
-        //addWater(finalWorldFrame);  // 7)
+        addWalls(finalWorldFrame);  // 6) for textures
+        addWater(finalWorldFrame);  // 7)
         return finalWorldFrame;
     }
 
@@ -103,7 +106,7 @@ public class Engine {
         int height = world[0].length;
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
-                world[x][y] = Tileset.EMPTY_A_0;
+                world[x][y] = Tileset.EMPTY_A_0000;
             }
         }
     }
@@ -197,32 +200,6 @@ public class Engine {
     }
 
     /**
-     * Overlap returns whether or not the two rooms overlap each other.
-     * @param first first room in the query
-     * @param second second room in the query
-     * @return boolean, true if overlap false if doesn't
-     */
-    private static boolean overlap(String first, String second) {
-        String[] firstData = first.split("_");
-        String[] secondData = second.split("_");
-        int firstB = Integer.parseInt(firstData[0]);
-        int firstL = Integer.parseInt(firstData[1]);
-        int firstT = Integer.parseInt(firstData[2]);
-        int firstR = Integer.parseInt(firstData[3]);
-
-        int secondB = Integer.parseInt(secondData[0]);
-        int secondL = Integer.parseInt(secondData[1]);
-        int secondT = Integer.parseInt(secondData[2]);
-        int secondR = Integer.parseInt(secondData[3]);
-
-        if (Math.min(firstT, secondT) > Math.max(firstB, secondB)
-                && Math.min(firstR, secondR) > Math.max(firstL, secondL)) {
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Have a set of connected rooms, each time append a room, attach pivot to a rando in set.
      * @return
      */
@@ -266,33 +243,33 @@ public class Engine {
             if ((startx < endx && starty < endy) || (endx < startx && endy < starty)) {
                 if (StdRandom.uniform(0, 2) == 0) {
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][bot] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[i][bot] = Tileset.FLOOR_A_0000;
                     }
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0000;
                     }
                 } else {
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[left][j] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[left][j] = Tileset.FLOOR_A_0000;
                     }
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0000;
                     }
                 }
             } else {
                 if (StdRandom.uniform(0, 2) == 0) {
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0000;
                     }
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0000;
                     }
                 } else {
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0000;
                     }
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
+                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0000;
                     }
                 }
             }
@@ -316,7 +293,7 @@ public class Engine {
                     int right = Integer.parseInt(roomDataArray[j + 3]);
                     for (int y = bot; y <= top; y += 1) {
                         for (int x = left; x <= right; x += 1) {
-                            finalWorldFrame[x][y] = Tileset.FLOOR_A_0;
+                            finalWorldFrame[x][y] = Tileset.FLOOR_A_0000;
                         }
                     }
                 }
@@ -382,15 +359,28 @@ public class Engine {
         for (int h = 0; h < HEIGHT; h += 1) {
             for (int w = 0; w < WIDTH; w += 1) {
                 if (!(finalWorldFrame[w][h].description().equals("Floor"))) {
+                    //Textures
                     int[] adjacentData = adjacent(finalWorldFrame, h, w);
+                    String texture = "";
                     boolean foundFloor = false;
                     for (int direction = 0; direction < 4; direction += 1) {
                         if (adjacentData[direction] == 2) {
                             foundFloor = true;
+                            texture += "0";
+                        } else if (adjacentData[direction] == 1) {
+                            texture += "1";
+                        } else {
+                            texture += "0";
                         }
                     }
                     if (foundFloor) {
-                        finalWorldFrame[w][h] = Tileset.WALL_A_2_LR;
+                        char p1 = Tileset.WALL_A_0000.character();
+                        Color p2 = Color.BLACK;
+                        Color p3 = p2;
+                        String p4 = Tileset.WALL_A_0000.description();
+                        String p5 = Tileset.N_PREFIX_PATH + "WALL_A_" + texture + ".png";
+                        TETile add = new TETile(p1, p2, p3, p4, p5);
+                        finalWorldFrame[w][h] = add;
                     }
                 }
             }
@@ -403,11 +393,28 @@ public class Engine {
      * @param finalWorldFrame of type TETile[][]
      */
     private void addWater(TETile[][] finalWorldFrame) {
-        Iterator<String> copyIT = copy.iterator();
-        while (copyIT.hasNext()) {
-            String b = copyIT.next();
-            String[] a = b.split("_");
-            finalWorldFrame[Integer.parseInt(a[1])][Integer.parseInt(a[0])] = Tileset.PIVOT_A_0;
+        for (int h = 0; h < HEIGHT; h += 1) {
+            for (int w = 0; w < WIDTH; w += 1) {
+                if (finalWorldFrame[w][h].description().equals("Empty")) {
+                    //Textures
+                    int[] adjacentData = adjacent(finalWorldFrame, h, w);
+                    String texture = "";
+                    for (int direction = 0; direction < 4; direction += 1) {
+                        if (adjacentData[direction] == 1) {
+                            texture += "1";
+                        } else {
+                            texture += "0";
+                        }
+                    }
+                    char p1 = Tileset.EMPTY_A_0000.character();
+                    Color p2 = Color.BLUE;
+                    Color p3 = p2;
+                    String p4 = Tileset.EMPTY_A_0000.description();
+                    String p5 = Tileset.N_PREFIX_PATH + "EMPTY_A_" + texture + ".png";
+                    TETile add = new TETile(p1, p2, p3, p4, p5);
+                    finalWorldFrame[w][h] = add;
+                }
+            }
         }
         return;
     }

@@ -15,12 +15,12 @@ public class BoringWorldDemo {
         // initialize the tile rendering engine with a window of size WIDTH x HEIGHT
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT);
-
+/*
         // initialize tiles
         TETile[][] world = new TETile[WIDTH][HEIGHT];
         for (int x = 0; x < WIDTH; x += 1) {
             for (int y = 0; y < HEIGHT; y += 1) {
-                world[x][y] = Tileset.FLOOR_A_0;
+                world[x][y] = Tileset.FLOOR_A_0000;
             }
         }
 
@@ -35,10 +35,10 @@ public class BoringWorldDemo {
             for (int y = 25; y < 30; y += 1) {
                 world[x][y] = Tileset.EMPTY_A_0;
             }
-        }
+        }*/
 
         // draws the world to the screen
-        ter.renderFrame(world);
+        //ter.renderFrame(world);
 
     }
 
