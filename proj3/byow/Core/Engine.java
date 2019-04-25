@@ -145,24 +145,38 @@ public class Engine {
         //create boxes (y,x)
         for (int i = 0; i < h; i += 1) {
             for (int j = 0; j < w; j += 1) {
+                int bot0 = 0;
+                int left0 = 0;
+                int top0 = 0;
+                int right0 = 0;
                 for (int count = 0; count < numRoomSector[i][j]; count += 1) {
                     int bot = StdRandom.uniform((i * hBound) + 1, ((i + 1) * hBound) - 4);
                     int left = StdRandom.uniform((j * wBound) + 1, ((j + 1) * wBound) - 4);
                     int top = StdRandom.uniform(bot + 1, ((i + 1) * hBound) - 1);
                     int right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
                     String temp = bot + "_" + left + "_" + top + "_" + right + "_";
+                    if (count == 0) { //set first square
+                        bot0 = bot;
+                        left0 = left;
+                        top0 = top;
+                        right0 = right;
+                    }
                     if (returnMap.containsKey((w * i) + j)) {
-                        String og = returnMap.get((w * i) + j).substring(0, 8);
-                        while (!overlap(og, temp)) {
-                            bot = StdRandom.uniform((i * hBound) + 1, ((i + 1) * hBound) - 4);
-                            left = StdRandom.uniform((j * wBound) + 1, ((j + 1) * wBound) - 4);
-                            top = StdRandom.uniform(bot + 1, ((i + 1) * hBound) - 1);
-                            right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
-                            temp = bot + "_" + left + "_" + top + "_" + right + "_";
-                        }
                         returnMap.put((w * i) + j, returnMap.get((w * i) + j) + temp);
                     } else {
                         returnMap.put((w * i) + j, temp);
+                    }
+                    //append extra box to ensure connectivity
+                    //find minimum distance of opposite points then construct box (inclusive)
+                    int originDistance = Math.abs(left0 - right) + Math.abs(bot0 - top);
+                    int desDistance = Math.abs(right0 - left) + Math.abs(top0 - bot);
+                    if (originDistance < desDistance) {
+                        int aBot = Math.min(bot0, top);
+                        int aTop = Math.max(bot0, top);
+                        int aLeft = Math.min(left0, right);
+                        int aRight = Math.max(left0, right);
+                        String a = aBot + "_" + aLeft + "_" + aTop + "_" + aRight + "_";
+                        returnMap.put((w * i) + j, returnMap.get((w * i) + j) + a);
                     }
                 }
             }
