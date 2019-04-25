@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Iterator;
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -16,6 +19,7 @@ public class Engine {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
     Map<Integer, String> rooms;
+    Set<String> pivots;
     int totalSectors;
 
 
@@ -73,8 +77,10 @@ public class Engine {
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
-        List<String> hallCoordinates = computeHall(numRoomSector);  // 4)
+        //List<String> hallCoordinates = computeHall(numRoomSector);  // 4)
+
         addFloors(finalWorldFrame);  // 5)
+        addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
         addWater(finalWorldFrame);  // 7)
         return finalWorldFrame;
@@ -133,6 +139,7 @@ public class Engine {
      * @return mapping of type Map<Integer, String>
      */
     private Map<Integer, String> computeRoom(int[][] numRoomSector) {
+        pivots = new HashSet<String>();
         Map<Integer, String> returnMap = new HashMap<>();
         int h = numRoomSector.length;
         int w = numRoomSector[0].length;
@@ -160,6 +167,10 @@ public class Engine {
                         left0 = left;
                         top0 = top;
                         right0 = right;
+                        //assign a random tile as the pivot that is connected
+                        int pivotH = StdRandom.uniform(bot, top + 1);
+                        int pivotW = StdRandom.uniform(left, right + 1);
+                        pivots.add(pivotH + "_" + pivotW);
                     }
                     if (returnMap.containsKey((w * i) + j)) {
                         returnMap.put((w * i) + j, returnMap.get((w * i) + j) + temp);
@@ -211,13 +222,60 @@ public class Engine {
     }
 
     /**
-     * Each index corresponds to a room.
-     * 0+2h ....
-     * 0+h 1+h 2+h ...
-     * 0   1   2   ...
+     * Have a set of connected rooms, each time append a room, attach pivot to a rando in set.
      * @return
      */
-    private List<String> computeHall(int[][] numRoomSector) {
+    private void addHalls(int[][] numRoomSector, TETile[][] finalWorldFrame) {
+        System.out.println(pivots.size());
+        Set<String> linkedPivots = new HashSet<String>();
+        //Set one to the starting pivot in link.
+        Iterator<String> pivotsIT = pivots.iterator();
+        String temp = pivotsIT.next();
+        pivots.remove(temp);
+        linkedPivots.add(temp);
+        System.out.println(temp);
+        while (!pivots.isEmpty()) {
+            //Pick starting pivot not in set.
+            pivotsIT = pivots.iterator();
+            int randPivotStartIndex = StdRandom.uniform(1, pivots.size() + 1);
+            String randPivotStart = null;
+
+            for (int i = 0; i < randPivotStartIndex; i += 1) {
+                randPivotStart = pivotsIT.next();
+            }
+            System.out.println(randPivotStart);
+            pivots.remove(randPivotStart);
+            //Pick ending pivot in set.
+            Iterator<String> linkedPivotsIT = linkedPivots.iterator();
+            int randPivotEndIndex = StdRandom.uniform(1, linkedPivots.size() + 1);
+            String randPivotEnd = null;
+            for (int i = 0; i < randPivotEndIndex; i += 1) {
+                randPivotEnd = linkedPivotsIT.next();
+            }
+            //Pick a random turning point for hallway
+            //construct in two intervals
+            String[] start = randPivotStart.split("_"); //bottop_leftright
+            String[] end = randPivotEnd.split("_"); //bottop_leftright
+            int left = Math.min(Integer.parseInt(start[1]), Integer.parseInt(end[1]));
+            int bot = Math.min(Integer.parseInt(start[0]), Integer.parseInt(end[0]));
+            int right = Math.max(Integer.parseInt(start[1]), Integer.parseInt(end[1]));
+            int top = Math.max(Integer.parseInt(start[0]), Integer.parseInt(end[0]));
+            if (StdRandom.uniform(0, 2) == 0) {
+                for (int i = left; i <= right; i += 1) {
+                    finalWorldFrame[i][bot] = Tileset.FLOOR_A_0;
+                }
+                for (int j = bot; j <= top; j += 1) {
+                    finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                }
+            } else {
+                for (int j = bot; j <= top; j += 1) {
+                    finalWorldFrame[left][j] = Tileset.FLOOR_A_0;
+                }
+                for (int i = left; i <= right; i += 1) {
+                    finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
+                }
+            }
+        }
         /*
         int h = numRoomSector.length;
         int w = numRoomSector[0].length;
@@ -248,8 +306,6 @@ public class Engine {
             }
 
         }*///dont have to use, this approach is probably bad
-
-        return new LinkedList<String>();
     }
 
     /**
