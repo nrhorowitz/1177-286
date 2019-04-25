@@ -152,7 +152,8 @@ public class Engine {
                     int right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
                     if (returnMap.containsKey((w * i) + j)) {
                         returnMap.put((w * i) + j,
-                                returnMap.get((w * i) + j) + bot + "_" + left + "_" + top + "_" + right + "_");
+                                returnMap.get((w * i) + j)
+                                        + bot + "_" + left + "_" + top + "_" + right + "_");
                     } else {
                         returnMap.put((w * i) + j,
                                 bot + "_" + left + "_" + top + "_" + right + "_");
