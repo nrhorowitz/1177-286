@@ -5,8 +5,6 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 
 import edu.princeton.cs.algs4.StdRandom;
-import java.util.List;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
@@ -252,8 +250,6 @@ public class Engine {
             for (int i = 0; i < randPivotEndIndex; i += 1) {
                 randPivotEnd = linkedPivotsIT.next();
             }
-            //Pick a random turning point for hallway
-            //construct in two intervals
             String[] start = randPivotStart.split("_"); //bottop_leftright
             String[] end = randPivotEnd.split("_"); //bottop_leftright
             int left = Math.min(Integer.parseInt(start[1]), Integer.parseInt(end[1]));
