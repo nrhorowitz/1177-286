@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="39d39b75-6062-4f18-baa1-20b8b6b0ef5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Engine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,13 +23,32 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TETile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-709">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="48" column="40" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
+            <state relative-caret-position="338">
+              <caret line="296" column="46" selection-start-line="296" selection-start-column="46" selection-end-line="296" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#9412#9420#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -38,10 +58,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pivots</find>
       <find>addHalls</find>
       <find>add</find>
       <find>1, 5</find>
+      <find>System</find>
+      <find>pivots</find>
+      <find>pivots =</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -50,6 +72,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/Engine.java" />
       </list>
     </option>
@@ -96,6 +119,13 @@
               <item name="byow" type="462c0819:PsiDirectoryNode" />
               <item name="Core" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="proj3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="proj3" type="462c0819:PsiDirectoryNode" />
+              <item name="proj3" type="462c0819:PsiDirectoryNode" />
+              <item name="byow" type="462c0819:PsiDirectoryNode" />
+              <item name="TileEngine" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -104,7 +134,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556175410081" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556178616083" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -172,7 +202,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="826" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26752505" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -184,7 +213,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32833788" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32833788" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39966556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -212,12 +241,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TETile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-709">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="48" column="40" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="251" column="13" selection-start-line="251" selection-start-column="13" selection-end-line="251" selection-end-column="13" />
+        <state relative-caret-position="338">
+          <caret line="296" column="46" selection-start-line="296" selection-start-column="46" selection-end-line="296" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#9412#9420#0" expanded="true" />
           </folding>
         </state>
       </provider>

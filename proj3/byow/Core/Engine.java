@@ -18,6 +18,7 @@ public class Engine {
     public static final int HEIGHT = 40;
     Map<Integer, String> rooms;
     Set<String> pivots;
+    Set<String> copy;
     int totalSectors;
 
 
@@ -80,7 +81,7 @@ public class Engine {
         addFloors(finalWorldFrame);  // 5)
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
-        addWater(finalWorldFrame);  // 7)
+        //addWater(finalWorldFrame);  // 7)
         return finalWorldFrame;
     }
 
@@ -138,6 +139,7 @@ public class Engine {
      */
     private Map<Integer, String> computeRoom(int[][] numRoomSector) {
         pivots = new HashSet<String>();
+        copy = new HashSet<String>();
         Map<Integer, String> returnMap = new HashMap<>();
         int h = numRoomSector.length;
         int w = numRoomSector[0].length;
@@ -169,6 +171,7 @@ public class Engine {
                         int pivotH = StdRandom.uniform(bot, top + 1);
                         int pivotW = StdRandom.uniform(left, right + 1);
                         pivots.add(pivotH + "_" + pivotW);
+                        copy.add(pivotH + "_" + pivotW);
                     }
                     if (returnMap.containsKey((w * i) + j)) {
                         returnMap.put((w * i) + j, returnMap.get((w * i) + j) + temp);
@@ -224,14 +227,12 @@ public class Engine {
      * @return
      */
     private void addHalls(int[][] numRoomSector, TETile[][] finalWorldFrame) {
-        System.out.println(pivots.size());
         Set<String> linkedPivots = new HashSet<String>();
         //Set one to the starting pivot in link.
         Iterator<String> pivotsIT = pivots.iterator();
         String temp = pivotsIT.next();
         pivots.remove(temp);
         linkedPivots.add(temp);
-        System.out.println(temp);
         while (!pivots.isEmpty()) {
             //Pick starting pivot not in set.
             pivotsIT = pivots.iterator();
@@ -241,7 +242,6 @@ public class Engine {
             for (int i = 0; i < randPivotStartIndex; i += 1) {
                 randPivotStart = pivotsIT.next();
             }
-            System.out.println(randPivotStart);
             pivots.remove(randPivotStart);
             //Pick ending pivot in set.
             Iterator<String> linkedPivotsIT = linkedPivots.iterator();
@@ -250,58 +250,54 @@ public class Engine {
             for (int i = 0; i < randPivotEndIndex; i += 1) {
                 randPivotEnd = linkedPivotsIT.next();
             }
+            //Pick a random turning point for hallway
+            //construct in two intervals
             String[] start = randPivotStart.split("_"); //bottop_leftright
             String[] end = randPivotEnd.split("_"); //bottop_leftright
-            int left = Math.min(Integer.parseInt(start[1]), Integer.parseInt(end[1]));
-            int bot = Math.min(Integer.parseInt(start[0]), Integer.parseInt(end[0]));
-            int right = Math.max(Integer.parseInt(start[1]), Integer.parseInt(end[1]));
-            int top = Math.max(Integer.parseInt(start[0]), Integer.parseInt(end[0]));
-            if (StdRandom.uniform(0, 2) == 0) {
-                for (int i = left; i <= right; i += 1) {
-                    finalWorldFrame[i][bot] = Tileset.FLOOR_A_0;
-                }
-                for (int j = bot; j <= top; j += 1) {
-                    finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
-                }
-            } else {
-                for (int j = bot; j <= top; j += 1) {
-                    finalWorldFrame[left][j] = Tileset.FLOOR_A_0;
-                }
-                for (int i = left; i <= right; i += 1) {
-                    finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
-                }
-            }
-        }
-        /*
-        int h = numRoomSector.length;
-        int w = numRoomSector[0].length;
-        int hBound = HEIGHT / h;
-        int hRem = HEIGHT - (h * hBound); //extra length to add to one box
-        int wBound = WIDTH / w;
-        int wRem = WIDTH - (w * wBound); //extra length to add to one box
-        //all branches horizontal
-        //only three vertical
-        for (int i = 0; i < w * h; i += w) {
-            if (rooms.containsKey(i)) {
-                String roomData = rooms.get(i);
-                String[] roomDataArray = roomData.split("_");
-                int startMinBot = 1000;
-                int startMaxTop = 0;
-                for (int j = 0; j < roomDataArray.length; j += 1) {
-                    if (Math.floorMod(j, 4) == 0) { //bot
-                        if (bot < startMinBot) {
-                            startMinBot = roomDataArray[j];
-                        }
-                    } else if (Math.floorMod(j, 4) == 2) { //top
-                        if (top > startMaxBot) {
-                            startMaxBot = roomDataArray[j];
-                        }
+            int starty = Integer.parseInt(start[0]);
+            int endy = Integer.parseInt(end[0]);
+            int startx = Integer.parseInt(start[1]);
+            int endx = Integer.parseInt(end[1]);
+
+            int left = Math.min(startx, endx);
+            int bot = Math.min(starty, endy);
+            int right = Math.max(startx, endx);
+            int top = Math.max(starty, endy);
+            if ((startx < endx && starty < endy) || (endx < startx && endy < starty)) {
+                if (StdRandom.uniform(0, 2) == 0) {
+                    for (int i = left; i <= right; i += 1) {
+                        finalWorldFrame[i][bot] = Tileset.FLOOR_A_0;
+                    }
+                    for (int j = bot; j <= top; j += 1) {
+                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                    }
+                } else {
+                    for (int j = bot; j <= top; j += 1) {
+                        finalWorldFrame[left][j] = Tileset.FLOOR_A_0;
+                    }
+                    for (int i = left; i <= right; i += 1) {
+                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
                     }
                 }
-                //check for room after
+            } else {
+                if (StdRandom.uniform(0, 2) == 0) {
+                    for (int i = left; i <= right; i += 1) {
+                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
+                    }
+                    for (int j = bot; j <= top; j += 1) {
+                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                    }
+                } else {
+                    for (int j = bot; j <= top; j += 1) {
+                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0;
+                    }
+                    for (int i = left; i <= right; i += 1) {
+                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0;
+                    }
+                }
             }
 
-        }*///dont have to use, this approach is probably bad
+        }
     }
 
     /**
@@ -407,10 +403,12 @@ public class Engine {
      * @param finalWorldFrame of type TETile[][]
      */
     private void addWater(TETile[][] finalWorldFrame) {
+        Iterator<String> copyIT = copy.iterator();
+        while (copyIT.hasNext()) {
+            String b = copyIT.next();
+            String[] a = b.split("_");
+            finalWorldFrame[Integer.parseInt(a[1])][Integer.parseInt(a[0])] = Tileset.PIVOT_A_0;
+        }
         return;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(overlap("4_4_6_6_", "4_4_5_5_"));
     }
 }

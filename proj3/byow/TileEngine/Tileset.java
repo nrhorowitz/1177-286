@@ -46,6 +46,8 @@ public class Tileset {
             new TETile('w', Color.BLACK, Color.BLACK, "Wall", N_PREFIX_PATH + "wall2LR.png");
     public static final TETile EMPTY_A_0 =
             new TETile('e', Color.BLUE, Color.BLUE, "Empty", N_PREFIX_PATH + "empty0.png");
+    public static final TETile PIVOT_A_0 =
+            new TETile('p', Color.RED, Color.RED, "Floor", N_PREFIX_PATH + "empty0.png");
 }
 
 
