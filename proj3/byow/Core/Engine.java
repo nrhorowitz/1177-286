@@ -16,7 +16,7 @@ public class Engine {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
     Map<Integer, String> rooms;
-    public int totalSectors;
+    int totalSectors;
 
 
 
@@ -49,7 +49,7 @@ public class Engine {
      * @return the 2D TETile[][] representing the state of the world
      */
     public TETile[][] interactWithInputString(String input) {
-        // TODO: Fill out this method so that it run the engine using the input
+        // Fill out this method so that it run the engine using the input
         // passed in as an argument, and return a 2D tile representation of the
         // world that would have been drawn if the same inputs had been given
         // to interactWithKeyboard().
@@ -106,7 +106,7 @@ public class Engine {
     /**
      * NumRoomSector seeds each sector with a random number of rooms.
      * Rooms may overlap
-     * TODO: make sure rooms are connected for n > 1 rooms
+     * **make sure rooms are connected for n > 1 rooms
      * @return array of room counts by sector of type int[][]
      */
     private int[][] numRoomSector() {
@@ -151,9 +151,11 @@ public class Engine {
                     int top = StdRandom.uniform(bot + 1, ((i + 1) * hBound) - 1);
                     int right = StdRandom.uniform(left + 1, ((j + 1) * wBound) - 1);
                     if (returnMap.containsKey((w * i) + j)) {
-                        returnMap.put((w * i) + j, returnMap.get((w * i) + j) + bot + "_" + left + "_" + top + "_" + right + "_");
+                        returnMap.put((w * i) + j,
+                                returnMap.get((w * i) + j) + bot + "_" + left + "_" + top + "_" + right + "_");
                     } else {
-                        returnMap.put((w * i) + j, bot + "_" + left + "_" + top + "_" + right + "_");
+                        returnMap.put((w * i) + j,
+                                bot + "_" + left + "_" + top + "_" + right + "_");
                     }
                 }
             }
@@ -245,30 +247,30 @@ public class Engine {
         returnArray[2] = 0;
         returnArray[3] = 0;
         if (w - 1 >= 0) {
-            if (finalWorldFrame[w - 1][h].description() == "Floor") {
+            if (finalWorldFrame[w - 1][h].description().equals("Floor")) {
                 returnArray[0] = 2;
-            } else if (finalWorldFrame[w - 1][h].description() == "Wall") {
+            } else if (finalWorldFrame[w - 1][h].description().equals("Wall")) {
                 returnArray[0] = 1;
             }
         }
         if (h + 1 < HEIGHT) {
-            if (finalWorldFrame[w][h + 1].description() == "Floor") {
+            if (finalWorldFrame[w][h + 1].description().equals("Floor")) {
                 returnArray[1] = 2;
-            } else if (finalWorldFrame[w][h + 1].description() == "Wall") {
+            } else if (finalWorldFrame[w][h + 1].description().equals("Wall")) {
                 returnArray[1] = 1;
             }
         }
         if (w + 1 < WIDTH) {
-            if (finalWorldFrame[w + 1][h].description() == "Floor") {
+            if (finalWorldFrame[w + 1][h].description().equals("Floor")) {
                 returnArray[2] = 2;
-            } else if (finalWorldFrame[w + 1][h].description() == "Wall") {
+            } else if (finalWorldFrame[w + 1][h].description().equals("Wall")) {
                 returnArray[2] = 1;
             }
         }
         if (h - 1 >= 0) {
-            if (finalWorldFrame[w][h - 1].description() == "Floor") {
+            if (finalWorldFrame[w][h - 1].description().equals("Floor")) {
                 returnArray[3] = 2;
-            } else if (finalWorldFrame[w][h - 1].description() == "Wall") {
+            } else if (finalWorldFrame[w][h - 1].description().equals("Wall")) {
                 returnArray[3] = 1;
             }
         }
@@ -284,7 +286,7 @@ public class Engine {
     private void addWalls(TETile[][] finalWorldFrame) {
         for (int h = 0; h < HEIGHT; h += 1) {
             for (int w = 0; w < WIDTH; w += 1) {
-                if (!(finalWorldFrame[w][h].description() == "Floor")) {
+                if (!(finalWorldFrame[w][h].description().equals("Floor"))) {
                     int[] adjacentData = adjacent(finalWorldFrame, h, w);
                     boolean foundFloor = false;
                     for (int direction = 0; direction < 4; direction += 1) {
