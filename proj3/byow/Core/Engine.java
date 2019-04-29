@@ -23,13 +23,21 @@ public class Engine {
     Set<String> copy;
     int totalSectors;
 
-
+    /* PLS READ So seems like we gotta make changes cuz phase II is yIkEs
+    1. Gotta somehow run everything on a third general method since interactWithKeyboard
+        and interactWithInputString do the same thing just with different input methods
+    2. I'm made two classes that take in the input and a menu class
+    3. SO FAR: only got both methods to generate the same phase 1 world, haven't actually
+        gotten them to do anything else yet.
+     */
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
+        InputKey allCommands = new InputKey();
+        interactGeneral(allCommands);
     }
 
     /**
@@ -61,8 +69,35 @@ public class Engine {
         //
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
+        InputString allCommands = new InputString(input);
+        //THIS IS JUST A TEMP PLACEHOLDER TO PREVENT ERRORS
+        return interactGeneral(allCommands);
+    }
 
+    private TETile[][] interactGeneral(Inputs allCommands) {
+        String worldString = "";
+        while (allCommands.possibleNextInput()) {
+            char c = allCommands.getNextKey();
+            if (c == 'N') {
+                continue;
+            } else if (c == 'L') {
+                //access a previous input
+                break;
+            } else if (c == 'Q') {
+                //figure out how to quit and save
+                break;
+            } else if (Character.isDigit(c)) {
+                worldString += c;
+            } else if (c == 'S') {
+                //temp placeholder to test if this thing works
+                break;
+            }
+        }
+        //JUST A TEMP PLACEHOLDER TO PREVENT ERRORS --> ONLY GENERATES PHASE 1 WORLD
+        return generateWorld(worldString);
+    }
 
+    private TETile[][] generateWorld(String input) {
         // 0) Set random seed from input
         // 1) Fill everything with nothing (water XD)
         // 2) Given width and height, create a 2 dimensional int array of zones
@@ -78,8 +113,6 @@ public class Engine {
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
-        //List<String> hallCoordinates = computeHall(numRoomSector);  // 4)
-
         addFloors(finalWorldFrame);  // 5)
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)

@@ -36,18 +36,18 @@ public class Tileset {
 
     //Pokemon Themed
     public static final String A_PREFIX_PATH =
-            "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/byow/Core/Resources/";
+            "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/proj3/byow/Core/Resources/";
     public static final String N_PREFIX_PATH =
             "/Users/nhorowitz/Desktop/work/cs61b/sp19-s1177/proj3/proj3/byow/Core/Resources/";
 
 
     //Order - left, top, right, bot
     public static final TETile FLOOR_A_0000 =
-            new TETile('f', Color.GREEN, Color.GREEN, "Floor", N_PREFIX_PATH + "FLOOR_A_0000.png");
+            new TETile('f', Color.GREEN, Color.GREEN, "Floor", A_PREFIX_PATH + "FLOOR_A_0000.png");
     public static final TETile WALL_A_0000 =
-            new TETile('w', Color.BLACK, Color.BLACK, "Wall", N_PREFIX_PATH + "WALL_A_0000.png");
+            new TETile('w', Color.BLACK, Color.BLACK, "Wall", A_PREFIX_PATH + "WALL_A_0000.png");
     public static final TETile EMPTY_A_0000 =
-            new TETile('e', Color.BLUE, Color.BLUE, "Empty", N_PREFIX_PATH + "EMPTY_A_0000.png");
+            new TETile('e', Color.BLUE, Color.BLUE, "Empty", A_PREFIX_PATH + "EMPTY_A_0000.png");
 }
 
 
