@@ -9,6 +9,7 @@ public class InputKey implements Inputs {
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char c = Character.toUpperCase(StdDraw.nextKeyTyped());
+                c = Character.toUpperCase(c);
                 return c;
             }
         }

@@ -16,12 +16,14 @@ import java.awt.Color;
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
-    public static final int WIDTH = 80;
-    public static final int HEIGHT = 40;
+    public static final int WIDTH = Main.WIDTH;
+    public static final int HEIGHT = Main.HEIGHT;
     Map<Integer, String> rooms;
     Set<String> pivots;
     Set<String> copy;
     int totalSectors;
+    String avatarLocation;
+    String currWorld;
 
     /* PLS READ So seems like we gotta make changes cuz phase II is yIkEs
     1. Gotta somehow run everything on a third general method since interactWithKeyboard
@@ -75,26 +77,67 @@ public class Engine {
     }
 
     private TETile[][] interactGeneral(Inputs allCommands) {
-        String worldString = "";
+        TETile[][] activeWorld = new TETile[WIDTH][HEIGHT]; //TODO: Figure if this will ever be used
+        //Open menu
+        Menu begin = new Menu();
+        //Take in first command: N, L, or Q, if no commands default Quits
+        char menuOption = 'I';
+        if (allCommands.possibleNextInput()) {
+            menuOption = allCommands.getNextKey();
+        }
+        //Does the appropriate thing depending on menuOption
+        //TODO: check if/else statements to act according to specs
+        //TODO: Need to figure out how to close menu
+        switch (menuOption) {
+            case 'N':
+                currWorld += menuOption;
+                //Generates a random world
+                String seed = "";
+                while (allCommands.possibleNextInput()) {
+                    char c = allCommands.getNextKey();
+                    if (Character.isDigit(c)) {
+                        seed += c;
+                        currWorld += c;
+                    } else if (c == 'S') {
+                        currWorld += c;
+                        break;
+                    }
+                }
+                activeWorld = generateWorld(seed);
+            case 'L':
+                currWorld = Saver.loadWorld();
+            case 'Q':
+                System.exit(0);
+            default:
+                System.out.println("Invalid command, please key in either 'N', 'L', or 'Q'");
+        }
+
+        //Commands after world creation
+        String commands = "";
         while (allCommands.possibleNextInput()) {
             char c = allCommands.getNextKey();
-            if (c == 'N') {
-                continue;
-            } else if (c == 'L') {
-                //access a previous input
-                break;
-            } else if (c == 'Q') {
-                //figure out how to quit and save
-                break;
-            } else if (Character.isDigit(c)) {
-                worldString += c;
-            } else if (c == 'S') {
-                //temp placeholder to test if this thing works
-                break;
+            if (c == ':') {
+                Saver.saveWorld(currWorld);
+                System.exit(0);
+                return activeWorld;
+            } else if (c == 'W' || c == 'S' || c == 'A' || c == 'D') { //UPDATES ACTIVE WORLD
+                //TODO: Make a move helper function
+            } else {
+                //TODO: Indicate unavailability
             }
+            currWorld += c;
+            //Add an update frame method draw active world with sprites
+            //stringToArray(activeWorld);
         }
+
         //JUST A TEMP PLACEHOLDER TO PREVENT ERRORS --> ONLY GENERATES PHASE 1 WORLD
-        return generateWorld(worldString);
+        return activeWorld;
+    }
+
+    private TETile[][] stringToArray(TETile[][] activeWorld, String commands) {
+        TETile[][] returnArray = new TETile[WIDTH][HEIGHT];
+
+        return null;
     }
 
     private TETile[][] generateWorld(String input) {
@@ -107,13 +150,13 @@ public class Engine {
         // 5) Add floors  (to final world frame)
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
         // 7) Big flex owo
-
         this.seed(input);  // 0)
         TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
         addFloors(finalWorldFrame);  // 5)
+        //addAvatar(finalWorldFrame); //Adds Avatar to the world somewhat randomly
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
         addWalls(finalWorldFrame);  // 6) for textures
@@ -330,6 +373,23 @@ public class Engine {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    /** AddAvatar adds an avatar tile to the world map
+     * @param finalWorldFrame of type TETile[][]
+     * TODO: Replace avatar tile
+     */
+    private void addAvatar(TETile[][] finalWorldFrame) {
+        for (int i = 0; i < totalSectors; i += 1) {
+            if (rooms.containsKey(i)) {
+                String roomData = rooms.get(i);
+                String[] roomDataArray = roomData.split("_");
+                int bot = Integer.parseInt(roomDataArray[0]);
+                int left = Integer.parseInt(roomDataArray[1]);
+                finalWorldFrame[left][bot] = Tileset.AVATAR;
+                avatarLocation = bot + "_" + left; //y axis, x axis
             }
         }
     }

@@ -5,7 +5,7 @@ public class InputString implements Inputs {
     private int index;
 
     public InputString(String s) {
-        input = s;
+        input = s.toUpperCase();
         index = 0;
     }
 

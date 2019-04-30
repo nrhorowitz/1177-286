@@ -24,6 +24,7 @@ public class Main {
             renderer.renderFrame(toRender);
         } else {
             Engine engine = new Engine();
+            System.out.println("Keyboard time!");
             engine.interactWithKeyboard();
         }
     }
