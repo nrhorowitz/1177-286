@@ -12,10 +12,8 @@ public class Menu {
         StdDraw.text(0.5, 0.55, "New Game (N)");
         StdDraw.text(0.5, 0.50, "Load Game (L)");
         StdDraw.text(0.5, 0.45, "Quit (Q)");
+        StdDraw.show();
     }
-
-
-
 
     public static void main(String[] args) {
         Menu test = new Menu();

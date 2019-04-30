@@ -33,6 +33,10 @@ public class Engine {
         gotten them to do anything else yet.
      */
 
+    public Engine() {
+        ter.initialize(WIDTH, HEIGHT, 0, 0);
+    }
+
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
      * including inputs from the main menu.
@@ -103,7 +107,10 @@ public class Engine {
                         break;
                     }
                 }
+                System.out.println(seed);
                 activeWorld = generateWorld(seed);
+                ter.renderFrame(activeWorld);
+
             case 'L':
                 currWorld = Saver.loadWorld();
             case 'Q':
@@ -121,9 +128,10 @@ public class Engine {
                 System.exit(0);
                 return activeWorld;
             } else if (c == 'W' || c == 'S' || c == 'A' || c == 'D') { //UPDATES ACTIVE WORLD
-                //TODO: Make a move helper function
+                moveCharacter(activeWorld, c);
+                ter.renderFrame(activeWorld);
             } else {
-                //TODO: Indicate unavailability
+                throw new IllegalArgumentException("Movement option not recognized");
             }
             currWorld += c;
             //Add an update frame method draw active world with sprites
@@ -134,10 +142,33 @@ public class Engine {
         return activeWorld;
     }
 
-    private TETile[][] stringToArray(TETile[][] activeWorld, String commands) {
-        TETile[][] returnArray = new TETile[WIDTH][HEIGHT];
-
-        return null;
+    /**
+     * Helper method moves if valid, increments turn by one.
+     * @param world of tiles
+     * @param movement character
+     */
+    public void moveCharacter(TETile[][] world, char movement) {
+        //TODO: increment time by 1 for frame counter
+        String[] avatarLocationArray = avatarLocation.split("_");
+        int botTop = Integer.parseInt(avatarLocationArray[0]);
+        int leftRight = Integer.parseInt(avatarLocationArray[1]);
+        int destinationY = botTop;
+        int destinationX = leftRight;
+        if (movement == 'W') {
+            destinationY += 1;
+        } else if (movement == 'S') {
+            destinationY -= 1;
+        } else if (movement == 'A') {
+            destinationX -= 1;
+        } else if (movement == 'D') {
+            destinationX += 1;
+        }
+        TETile destination = world[destinationX][destinationY];
+        if (destination.description().equals("Floor")) {
+            avatarLocation = destinationY + "_" + destinationX;
+        } else {
+            //something blocking
+        }
     }
 
     private TETile[][] generateWorld(String input) {
@@ -156,7 +187,7 @@ public class Engine {
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
         addFloors(finalWorldFrame);  // 5)
-        //addAvatar(finalWorldFrame); //Adds Avatar to the world somewhat randomly
+        addAvatar(finalWorldFrame); //Adds Avatar to the world somewhat randomly
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
         addWalls(finalWorldFrame);  // 6) for textures
