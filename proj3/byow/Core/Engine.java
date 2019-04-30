@@ -25,17 +25,17 @@ public class Engine {
     String avatarLocation;
     String currWorld;
 
-    /* PLS READ So seems like we gotta make changes cuz phase II is yIkEs
-    1. Gotta somehow run everything on a third general method since interactWithKeyboard
-        and interactWithInputString do the same thing just with different input methods
-    2. I'm made two classes that take in the input and a menu class
-    3. SO FAR: only got both methods to generate the same phase 1 world, haven't actually
-        gotten them to do anything else yet.
-     */
+    /* TODO: --master
+    1) menu show seed inputs
+    2) file path?????
+    3) :Q
+    4) Load
+    5) line of sight bubble
+    6) Health ------- 6* heart png
+    7) Creative writing
+    8) avatar / heart / enemy --> resources
 
-    public Engine() {
-        ter.initialize(WIDTH, HEIGHT, 0, 0);
-    }
+     */
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -97,24 +97,28 @@ public class Engine {
                 currWorld += menuOption;
                 //Generates a random world
                 String seed = "";
-                while (allCommands.possibleNextInput()) {
+                boolean looking = true;
+                while (allCommands.possibleNextInput() && looking) {
                     char c = allCommands.getNextKey();
                     if (Character.isDigit(c)) {
                         seed += c;
                         currWorld += c;
                     } else if (c == 'S') {
                         currWorld += c;
-                        break;
+                        looking = false;
                     }
                 }
-                System.out.println(seed);
                 activeWorld = generateWorld(seed);
+                ter.initialize(WIDTH, HEIGHT);
                 ter.renderFrame(activeWorld);
-
+                break;
             case 'L':
                 currWorld = Saver.loadWorld();
+                break;
             case 'Q':
+                System.out.println("quitting");
                 System.exit(0);
+                break;
             default:
                 System.out.println("Invalid command, please key in either 'N', 'L', or 'Q'");
         }
@@ -131,7 +135,8 @@ public class Engine {
                 moveCharacter(activeWorld, c);
                 ter.renderFrame(activeWorld);
             } else {
-                throw new IllegalArgumentException("Movement option not recognized");
+                System.out.println("Movement option not recognized");
+                //throw new IllegalArgumentException("Movement option not recognized");
             }
             currWorld += c;
             //Add an update frame method draw active world with sprites
@@ -166,6 +171,8 @@ public class Engine {
         TETile destination = world[destinationX][destinationY];
         if (destination.description().equals("Floor")) {
             avatarLocation = destinationY + "_" + destinationX;
+            world[destinationX][destinationY] = Tileset.AVATAR_A_3;
+            world[leftRight][botTop] = Tileset.FLOOR_A_0000;
         } else {
             //something blocking
         }

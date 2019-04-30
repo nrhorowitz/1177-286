@@ -43,11 +43,13 @@ public class Tileset {
 
     //Order - left, top, right, bot
     public static final TETile FLOOR_A_0000 =
-            new TETile('f', Color.GREEN, Color.GREEN, "Floor", A_PREFIX_PATH + "FLOOR_A_0000.png");
+            new TETile('f', Color.GREEN, Color.GREEN, "Floor", N_PREFIX_PATH + "FLOOR_A_0000.png");
     public static final TETile WALL_A_0000 =
             new TETile('w', Color.BLACK, Color.BLACK, "Wall", A_PREFIX_PATH + "WALL_A_0000.png");
     public static final TETile EMPTY_A_0000 =
             new TETile('e', Color.BLUE, Color.BLUE, "Empty", A_PREFIX_PATH + "EMPTY_A_0000.png");
+    public static final TETile AVATAR_A_3 =
+            new TETile('a', Color.RED, Color.RED, "Avatar", A_PREFIX_PATH + "");
 }
 
 
