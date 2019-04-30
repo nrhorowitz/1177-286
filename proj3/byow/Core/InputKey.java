@@ -6,8 +6,14 @@ import byow.TileEngine.TERenderer;
 
 public class InputKey implements Inputs {
 
+    private TERenderer ter;
+
+    public InputKey(TERenderer ter) {
+        this.ter = ter;
+    }
 
     public char getNextKey() {
+        System.out.println("next");
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char c = Character.toUpperCase(StdDraw.nextKeyTyped());
@@ -16,7 +22,7 @@ public class InputKey implements Inputs {
             } else {
                 try {
                     TimeUnit.SECONDS.sleep((long) .01);
-                    TERenderer.updateHover(((int) StdDraw.mouseX()) + "_" + ((int) StdDraw.mouseY()));
+                    ter.updateHover(((int) StdDraw.mouseX()) + "_" + ((int) StdDraw.mouseY()));
                 } catch (Exception e) {
 
                 }

@@ -27,13 +27,16 @@ public class Engine {
 
     /* TODO: --master
     1) menu show seed inputs --done
-    2) file path????? --done
+    2) file path????? --done (did relative pathing)
     3) :Q --done
     4) Load --done
-    5) line of sight bubble
-    6) Health ------- 6* heart png
-    7) Creative writing
-    8) avatar / heart / enemy --> resources
+    5) line of sight bubble --NOT DONE
+    6) Health ------- 6* heart png --done with display, decrement from avatarData to take damage
+    7) Creative writing --NOT DONE
+    8) avatar / heart / enemy --> resources --NOT DONE
+    NOTE: HUD only displays string with delay,
+    --print statements show continious data but for some reason does not display immediately
+    --see TERednerer line 139
 
      */
 
@@ -42,7 +45,7 @@ public class Engine {
      * including inputs from the main menu.
      */
     public void interactWithKeyboard() {
-        InputKey allCommands = new InputKey();
+        Inputs allCommands = new InputKey(ter);
         interactGeneral(allCommands);
     }
 

@@ -20,7 +20,7 @@ public class TERenderer {
     private int xOffset;
     private int yOffset;
     private String biome;
-    private static String hover;
+    private static String hover="";
     private static TETile[][] currentWorld;
 
     /**
@@ -45,7 +45,7 @@ public class TERenderer {
 
         StdDraw.clear(new Color(0, 0, 0));
         biome = "";
-        hover = "";
+        //hover = "";
         currentWorld = null;
 
         StdDraw.enableDoubleBuffering();
@@ -134,18 +134,17 @@ public class TERenderer {
         //Display Current Tile
         StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
         StdDraw.text(74.0, 32.0, "Current Tile:");
-        StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
-        StdDraw.text(74.0, 30.0, hover);
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 20));
+        System.out.println("hover is" + hover);
+        StdDraw.text(64.0, 30.0, "HOVER:" + hover);
     }
 
-    public static void updateHover(String mouseXY) {
+    public void updateHover(String mouseXY) {
         String[] mouseDataArray = mouseXY.split("_");
         int mouseX = Integer.parseInt(mouseDataArray[0]);
         int mouseY = Integer.parseInt(mouseDataArray[1]);
         hover = currentWorld[mouseX][mouseY].description();
-        StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
-        StdDraw.text(74.0, 30.0, hover);
         System.out.println(hover);
+        this.showInventory();
     }
 }

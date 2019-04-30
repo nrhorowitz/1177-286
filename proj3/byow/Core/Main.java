@@ -12,6 +12,7 @@ public class Main {
     public static final int HEIGHT = 40;
 
     public static void main(String[] args) {
+        System.out.println("start");
         if (args.length > 1) {
             System.out.println("Can only have one argument - the input string");
             System.exit(0);
