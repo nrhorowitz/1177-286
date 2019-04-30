@@ -115,6 +115,14 @@ public class TETile {
     }
 
     /**
+     * Returns filepath to check biome.
+     * @return filepath
+     */
+    public String filepath() {
+        return filepath;
+    }
+
+    /**
      * Creates a copy of the given tile with a slightly different text color. The new
      * color will have a red value that is within dr of the current red value,
      * and likewise with dg and db.

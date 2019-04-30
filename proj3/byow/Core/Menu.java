@@ -2,20 +2,32 @@ package byow.Core;
 
 import edu.princeton.cs.introcs.StdDraw;
 import java.awt.*;
+import byow.TileEngine.Tileset;
 
 public class Menu {
     public final static Font TITLE_FONT = new Font("Arial", Font.BOLD, 30);
     public Menu() {
-        StdDraw.setFont(TITLE_FONT);
-        StdDraw.text(0.5, 0.85, "FAKE POKEMON GAME");
-        StdDraw.setFont();
-        StdDraw.text(0.5, 0.55, "New Game (N)");
-        StdDraw.text(0.5, 0.50, "Load Game (L)");
-        StdDraw.text(0.5, 0.45, "Quit (Q)");
-        StdDraw.show();
+        drawMe();
     }
 
     public static void main(String[] args) {
         Menu test = new Menu();
+    }
+
+    private void drawMe() {
+        StdDraw.picture(0.5, 0.5, Tileset.PREFIX_PATH + "TITLE_PAGE_A.png");
+        StdDraw.setFont(TITLE_FONT);
+        StdDraw.setPenColor(StdDraw.WHITE);
+        //StdDraw.text(0.5, 0.85, "FAKE POKEMON GAME");
+        StdDraw.setFont();
+        StdDraw.text(0.5, 0.35, "New Game (N)");
+        StdDraw.text(0.5, 0.30, "Load Game (L)");
+        StdDraw.text(0.5, 0.25, "Quit (Q)");
+        //StdDraw.show();
+    }
+
+    public void drawSeed(String seed) {
+        drawMe();
+        StdDraw.text(0.5, 0.20, "Seed: " + seed);
     }
 }

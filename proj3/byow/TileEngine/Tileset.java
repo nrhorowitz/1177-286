@@ -34,22 +34,23 @@ public class Tileset {
     public static final TETile MOUNTAIN = new TETile('▲', Color.gray, Color.black, "mountain");
     public static final TETile TREE = new TETile('♠', Color.green, Color.black, "tree");
 
-    //Pokemon Themed
-    public static final String A_PREFIX_PATH =
-            "/Users/coolkid/Desktop/18Newbie/CS/cs61b/sp19-s286/1177-286/proj3/byow/Core/Resources/";
-    public static final String N_PREFIX_PATH =
-            "/Users/nhorowitz/Desktop/work/cs61b/sp19-s1177/proj3/proj3/byow/Core/Resources/";
-
+    public static final String PREFIX_PATH = "./proj3/byow/Core/Resources/";
 
     //Order - left, top, right, bot
     public static final TETile FLOOR_A_0000 =
-            new TETile('f', Color.GREEN, Color.GREEN, "Floor", N_PREFIX_PATH + "FLOOR_A_0000.png");
+            new TETile('f', Color.GREEN, Color.GREEN, "Floor", PREFIX_PATH + "FLOOR_A_0000.png");
     public static final TETile WALL_A_0000 =
-            new TETile('w', Color.BLACK, Color.BLACK, "Wall", A_PREFIX_PATH + "WALL_A_0000.png");
+            new TETile('w', Color.BLACK, Color.BLACK, "Wall", PREFIX_PATH + "WALL_A_0000.png");
     public static final TETile EMPTY_A_0000 =
-            new TETile('e', Color.BLUE, Color.BLUE, "Empty", A_PREFIX_PATH + "EMPTY_A_0000.png");
+            new TETile('e', Color.BLUE, Color.BLUE, "Empty", PREFIX_PATH + "EMPTY_A_0000.png");
+    public static final TETile AVATAR_A_0 =
+            new TETile('a', Color.RED, Color.RED, "Avatar", PREFIX_PATH + "AVATAR_A_0.png");
+    public static final TETile AVATAR_A_1 =
+            new TETile('a', Color.RED, Color.RED, "Avatar", PREFIX_PATH + "AVATAR_A_1.png");
+    public static final TETile AVATAR_A_2 =
+            new TETile('a', Color.RED, Color.RED, "Avatar", PREFIX_PATH + "AVATAR_A_2.png");
     public static final TETile AVATAR_A_3 =
-            new TETile('a', Color.RED, Color.RED, "Avatar", A_PREFIX_PATH + "");
+            new TETile('a', Color.RED, Color.RED, "Avatar", PREFIX_PATH + "AVATAR_A_3.png");
 }
 
 

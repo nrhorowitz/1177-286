@@ -8,7 +8,7 @@ import byow.TileEngine.TERenderer;
  *  in either keyboard or input string mode.
  */
 public class Main {
-    public static final int WIDTH = 80;
+    public static final int WIDTH = 70;
     public static final int HEIGHT = 40;
 
     public static void main(String[] args) {

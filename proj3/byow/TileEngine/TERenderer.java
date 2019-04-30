@@ -4,6 +4,8 @@ import edu.princeton.cs.introcs.StdDraw;
 
 import java.awt.Color;
 import java.awt.Font;
+import byow.Core.Engine;
+
 
 /**
  * Utility class for rendering tiles. You do not need to modify this file. You're welcome
@@ -17,6 +19,9 @@ public class TERenderer {
     private int height;
     private int xOffset;
     private int yOffset;
+    private String biome;
+    private static String hover;
+    private static TETile[][] currentWorld;
 
     /**
      * Same functionality as the other initialization method. The only difference is that the xOff
@@ -39,6 +44,9 @@ public class TERenderer {
         StdDraw.setYscale(0, height);
 
         StdDraw.clear(new Color(0, 0, 0));
+        biome = "";
+        hover = "";
+        currentWorld = null;
 
         StdDraw.enableDoubleBuffering();
         StdDraw.show();
@@ -84,6 +92,7 @@ public class TERenderer {
      * @param world the 2D TETile[][] array to render
      */
     public void renderFrame(TETile[][] world) {
+        currentWorld = world;
         int numXTiles = world.length;
         int numYTiles = world[0].length;
         StdDraw.clear(new Color(0, 0, 0));
@@ -96,6 +105,47 @@ public class TERenderer {
                 world[x][y].draw(x + xOffset, y + yOffset);
             }
         }
+        String[] biomeArray = world[0][0].filepath().split("_");
+        if (biomeArray[1].equals("A")) {
+            biome = "Tropical Islands";
+        } else {
+            biome = "???";
+        }
+        showInventory();
         StdDraw.show();
+    }
+
+    public void showInventory() {
+        //Background
+        StdDraw.picture(75.0, 20.0, Tileset.PREFIX_PATH + "INVENTORY_A.png");
+        //Player Name
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 21));
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.text(75.0, 37.5, "PlayerName"); //TODO?
+        //Biome
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 11));
+        StdDraw.text(75.0, 36.0, "Biome: " + biome);
+        //Health
+        String[] avatarDataArray = Engine.avatarData.split("_");
+        int health = Integer.parseInt(avatarDataArray[2]);
+        for (int i = 0; i < health; i += 1) {
+            StdDraw.picture(71.5 + i, 34.5, Tileset.PREFIX_PATH + "HEALTH_A.png");
+        }
+        //Display Current Tile
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
+        StdDraw.text(74.0, 32.0, "Current Tile:");
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
+        StdDraw.text(74.0, 30.0, hover);
+    }
+
+    public static void updateHover(String mouseXY) {
+        String[] mouseDataArray = mouseXY.split("_");
+        int mouseX = Integer.parseInt(mouseDataArray[0]);
+        int mouseY = Integer.parseInt(mouseDataArray[1]);
+        hover = currentWorld[mouseX][mouseY].description();
+        StdDraw.setPenColor(StdDraw.BLACK);
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
+        StdDraw.text(74.0, 30.0, hover);
+        System.out.println(hover);
     }
 }

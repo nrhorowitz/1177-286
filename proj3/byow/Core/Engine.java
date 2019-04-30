@@ -22,14 +22,14 @@ public class Engine {
     Set<String> pivots;
     Set<String> copy;
     int totalSectors;
-    String avatarLocation;
+    public static String avatarData;
     String currWorld;
 
     /* TODO: --master
-    1) menu show seed inputs
-    2) file path?????
-    3) :Q
-    4) Load
+    1) menu show seed inputs --done
+    2) file path????? --done
+    3) :Q --done
+    4) Load --done
     5) line of sight bubble
     6) Health ------- 6* heart png
     7) Creative writing
@@ -94,29 +94,33 @@ public class Engine {
         //TODO: Need to figure out how to close menu
         switch (menuOption) {
             case 'N':
+                currWorld = "";
                 currWorld += menuOption;
                 //Generates a random world
                 String seed = "";
+                begin.drawSeed(seed);
                 boolean looking = true;
                 while (allCommands.possibleNextInput() && looking) {
                     char c = allCommands.getNextKey();
                     if (Character.isDigit(c)) {
                         seed += c;
                         currWorld += c;
+                        begin.drawSeed(seed);
                     } else if (c == 'S') {
                         currWorld += c;
                         looking = false;
+                    } else {
+                        System.out.println("Invalid command, please key in digit or 'S'");
                     }
                 }
                 activeWorld = generateWorld(seed);
-                ter.initialize(WIDTH, HEIGHT);
+                ter.initialize(WIDTH+10, HEIGHT);
                 ter.renderFrame(activeWorld);
                 break;
             case 'L':
-                currWorld = Saver.loadWorld();
+                activeWorld = interactWithInputString(Saver.loadWorld());
                 break;
             case 'Q':
-                System.out.println("quitting");
                 System.exit(0);
                 break;
             default:
@@ -128,9 +132,16 @@ public class Engine {
         while (allCommands.possibleNextInput()) {
             char c = allCommands.getNextKey();
             if (c == ':') {
-                Saver.saveWorld(currWorld);
-                System.exit(0);
-                return activeWorld;
+                while (allCommands.possibleNextInput()) {
+                    c = allCommands.getNextKey();
+                    if (c == 'Q') {
+                        Saver.saveWorld(currWorld);
+                        System.exit(0);
+                        return activeWorld;
+                    } else {
+                        break;
+                    }
+                }
             } else if (c == 'W' || c == 'S' || c == 'A' || c == 'D') { //UPDATES ACTIVE WORLD
                 moveCharacter(activeWorld, c);
                 ter.renderFrame(activeWorld);
@@ -154,27 +165,33 @@ public class Engine {
      */
     public void moveCharacter(TETile[][] world, char movement) {
         //TODO: increment time by 1 for frame counter
-        String[] avatarLocationArray = avatarLocation.split("_");
-        int botTop = Integer.parseInt(avatarLocationArray[0]);
-        int leftRight = Integer.parseInt(avatarLocationArray[1]);
+        String[] avatarDataArray = avatarData.split("_");
+        int botTop = Integer.parseInt(avatarDataArray[0]);
+        int leftRight = Integer.parseInt(avatarDataArray[1]);
         int destinationY = botTop;
         int destinationX = leftRight;
+        TETile directionalTile = Tileset.AVATAR_A_3;
         if (movement == 'W') {
             destinationY += 1;
+            directionalTile = Tileset.AVATAR_A_1;
         } else if (movement == 'S') {
             destinationY -= 1;
+            directionalTile = Tileset.AVATAR_A_3;
         } else if (movement == 'A') {
             destinationX -= 1;
+            directionalTile = Tileset.AVATAR_A_0;
         } else if (movement == 'D') {
             destinationX += 1;
+            directionalTile = Tileset.AVATAR_A_2;
         }
         TETile destination = world[destinationX][destinationY];
         if (destination.description().equals("Floor")) {
-            avatarLocation = destinationY + "_" + destinationX;
-            world[destinationX][destinationY] = Tileset.AVATAR_A_3;
+            avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
+            world[destinationX][destinationY] = directionalTile;
             world[leftRight][botTop] = Tileset.FLOOR_A_0000;
         } else {
             //something blocking
+            world[leftRight][botTop] = directionalTile;
         }
     }
 
@@ -194,11 +211,11 @@ public class Engine {
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
         addFloors(finalWorldFrame);  // 5)
-        addAvatar(finalWorldFrame); //Adds Avatar to the world somewhat randomly
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
         addWalls(finalWorldFrame);  // 6) for textures
         addWater(finalWorldFrame);  // 7)
+        addAvatar(finalWorldFrame); //Adds Avatar to the world somewhat randomly
         return finalWorldFrame;
     }
 
@@ -426,8 +443,9 @@ public class Engine {
                 String[] roomDataArray = roomData.split("_");
                 int bot = Integer.parseInt(roomDataArray[0]);
                 int left = Integer.parseInt(roomDataArray[1]);
-                finalWorldFrame[left][bot] = Tileset.AVATAR;
-                avatarLocation = bot + "_" + left; //y axis, x axis
+                finalWorldFrame[left][bot] = Tileset.AVATAR_A_3;
+                avatarData = bot + "_" + left + "_5"; //y axis, x axis
+                return;
             }
         }
     }
@@ -509,7 +527,7 @@ public class Engine {
                         Color p2 = Color.BLACK;
                         Color p3 = p2;
                         String p4 = Tileset.WALL_A_0000.description();
-                        String p5 = Tileset.N_PREFIX_PATH + "WALL_A_" + texture + ".png";
+                        String p5 = Tileset.PREFIX_PATH + "WALL_A_" + texture + ".png";
                         TETile add = new TETile(p1, p2, p3, p4, p5);
                         finalWorldFrame[w][h] = add;
                     }
@@ -541,7 +559,7 @@ public class Engine {
                     Color p2 = Color.BLUE;
                     Color p3 = p2;
                     String p4 = Tileset.EMPTY_A_0000.description();
-                    String p5 = Tileset.N_PREFIX_PATH + "EMPTY_A_" + texture + ".png";
+                    String p5 = Tileset.PREFIX_PATH + "EMPTY_A_" + texture + ".png";
                     TETile add = new TETile(p1, p2, p3, p4, p5);
                     finalWorldFrame[w][h] = add;
                 }
