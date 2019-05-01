@@ -1,12 +1,11 @@
 package byow.Core;
 
 import java.io.*;
-import byow.TileEngine.Tileset;
 
 public class Saver implements Serializable {
 
     public static void saveWorld(String currWorld) {
-        File f = new File( "./save_data.txt");
+        File f = new File("./save_data.txt");
         try {
             if (!f.exists()) {
                 f.createNewFile();

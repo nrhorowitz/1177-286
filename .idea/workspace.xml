@@ -3,116 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="39d39b75-6062-4f18-baa1-20b8b6b0ef5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/AStarGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/AStarSolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/LazySolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/ShortestPathsSolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/SolutionPrinter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/SolverOutcome.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/WeightedEdge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/lectureexample/DemoAlternateExampleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/lectureexample/DemoLectureExampleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/lectureexample/WeightedDirectedGraph$EdgeList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/hw4/lectureexample/WeightedDirectedGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/proj2ab/ArrayHeapMinPQ$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/proj2ab/ArrayHeapMinPQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/proj2ab/DoubleMapPQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/bearmaps/proj2ab/ExtrinsicMinPQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/ElitePuzzle1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/ElitePuzzle2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/ElitePuzzle3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/HardPuzzle1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/HardPuzzle2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/HardPuzzle3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/berkeley-street-data.simple" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/words10000.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/AvatarCharacter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/AvatarCharacter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/Characters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/Characters.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/EnemyCharacter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/EnemyCharacter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/Engine.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/Engine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/InputKey.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/InputKey.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/InputString.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/InputString.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/Core/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/Core/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/1177-286/byow/TileEngine/TERenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/1177-286/byow/TileEngine/TERenderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/AStarGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/AStarSolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/LazySolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/ShortestPathsSolver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolutionPrinter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolverOutcome.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/WeightedEdge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/DemoAlternateExampleSolution.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/DemoLectureExampleSolution.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/WeightedDirectedGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/ArrayHeapMinPQ.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/DoubleMapPQ.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/ExtrinsicMinPQ.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/hw4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/AStarGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/AStarSolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/LazySolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/ShortestPathsSolver.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/SolutionPrinter.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/SolverOutcome.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/WeightedEdge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/BasicPuzzle4.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/ElitePuzzle1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/ElitePuzzle2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/ElitePuzzle3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/HardPuzzle1.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/HardPuzzle2.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/HardPuzzle3.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/berkeley-street-data.simple" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/input/words10000.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/integerhoppuzzle/DemoIntegerHopPuzzleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/integerhoppuzzle/IntegerHopGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/lectureexample/DemoAlternateExampleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/lectureexample/DemoLectureExampleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/lectureexample/WeightedDirectedGraph$EdgeList.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/lectureexample/WeightedDirectedGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/sanitytests/SanityTests.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/slidingpuzzle/Board.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/slidingpuzzle/BoardGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/slidingpuzzle/DemoRunSeveralPuzzles.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/slidingpuzzle/DemoSlidingPuzzleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/streetmap/DemoStreetDirections.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/streetmap/GraphBuildingHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/streetmap/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/streetmap/StreetMapGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/wordladderpuzzle/DemoWordPuzzleSolution.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/hw4/wordladderpuzzle/WordGraph.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/proj2ab/ArrayHeapMinPQ$Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/proj2ab/ArrayHeapMinPQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/proj2ab/DoubleMapPQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/bearmaps/proj2ab/ExtrinsicMinPQ.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/ASTAR/out/production/hw4/hw4.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Characters.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Characters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/InputKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/InputKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/InputString.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/InputString.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Inputs.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Inputs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Saver.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Saver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save_data.txt" beforeDir="false" afterPath="$PROJECT_DIR$/save_data.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -123,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="177" column="49" selection-start-line="177" selection-start-column="42" selection-end-line="177" selection-end-column="49" />
+            <state relative-caret-position="392">
+              <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -138,17 +31,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
+            <state relative-caret-position="561">
               <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="776" selection-start-line="776" selection-end-line="776" />
+            <state relative-caret-position="99">
+              <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,12 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/InputString.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-              <folding>
-                <element signature="e#401#402#0" expanded="true" />
-                <element signature="e#446#447#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="289">
+              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -172,7 +61,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8">
+            <state relative-caret-position="119">
               <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -184,7 +73,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/InputKey.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
+            <state relative-caret-position="340">
               <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="28" selection-end-column="17" />
             </state>
           </provider>
@@ -193,8 +82,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Saver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+            <state relative-caret-position="109">
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -202,11 +91,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
+            <state relative-caret-position="85">
               <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-              <folding>
-                <element signature="e#1465#1466#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -214,12 +100,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
+            <state relative-caret-position="459">
               <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#500#501#0" expanded="true" />
-                <element signature="e#527#528#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -303,7 +187,6 @@
         <option value="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/Vertex.java" />
         <option value="$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/WeightedDirectedGraph.java" />
         <option value="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" />
-        <option value="$PROJECT_DIR$/proj3/byow/Core/Saver.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/Characters.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java" />
@@ -311,8 +194,9 @@
         <option value="$PROJECT_DIR$/proj3/byow/Core/Inputs.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/Menu.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/InputKey.java" />
-        <option value="$PROJECT_DIR$/proj3/byow/Core/Engine.java" />
         <option value="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" />
+        <option value="$PROJECT_DIR$/proj3/byow/Core/Saver.java" />
+        <option value="$PROJECT_DIR$/proj3/byow/Core/Engine.java" />
       </list>
     </option>
   </component>
@@ -328,35 +212,34 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="proj3" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1177-286" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1177-286" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="1177-286" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1177-286" type="462c0819:PsiDirectoryNode" />
               <item name="proj3" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="proj3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proj3" type="462c0819:PsiDirectoryNode" />
-              <item name="proj3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="proj3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proj3" type="462c0819:PsiDirectoryNode" />
+              <item name="1177-286" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1177-286" type="462c0819:PsiDirectoryNode" />
               <item name="proj3" type="462c0819:PsiDirectoryNode" />
               <item name="byow" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="proj3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proj3" type="462c0819:PsiDirectoryNode" />
+              <item name="1177-286" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1177-286" type="462c0819:PsiDirectoryNode" />
               <item name="proj3" type="462c0819:PsiDirectoryNode" />
               <item name="byow" type="462c0819:PsiDirectoryNode" />
               <item name="Core" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="proj3" type="b2602c69:ProjectViewProjectNode" />
-              <item name="proj3" type="462c0819:PsiDirectoryNode" />
+              <item name="1177-286" type="b2602c69:ProjectViewProjectNode" />
+              <item name="1177-286" type="462c0819:PsiDirectoryNode" />
               <item name="proj3" type="462c0819:PsiDirectoryNode" />
               <item name="byow" type="462c0819:PsiDirectoryNode" />
               <item name="TileEngine" type="462c0819:PsiDirectoryNode" />
@@ -365,10 +248,11 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556726348534" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556749218616" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -428,6 +312,7 @@
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="byow.Core.Main" />
       <module name="1177-286" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;ldd&quot;" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="byow.Core.*" />
@@ -491,10 +376,9 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="830" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1366" height="690" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27110156" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27492446" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -509,7 +393,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32971507" />
-      <window_info anchor="bottom" id="Style Checker" order="7" />
+      <window_info active="true" anchor="bottom" id="Style Checker" order="7" visible="true" weight="0.32943144" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32943144" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32971507" />
       <window_info anchor="bottom" id="Version Control" order="10" />
@@ -643,40 +527,11 @@
     <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/SolverOutcome.java" />
     <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/ShortestPathsSolver.java" />
     <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/AStarSolver.java" />
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/ExtrinsicMinPQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolutionPrinter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/hw4.iml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/DoubleMapPQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/ArrayHeapMinPQ.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/ExtrinsicMinPQ.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolutionPrinter.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/hw4.iml" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/DoubleMapPQ.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/proj2ab/ArrayHeapMinPQ.java" />
     <entry file="file://$PROJECT_DIR$/../hw4/bearmaps/hw4/integerhoppuzzle/IntegerHopGraph.java">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -687,62 +542,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/DemoAlternateExampleSolution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="33" column="64" selection-start-line="33" selection-start-column="64" selection-end-line="33" selection-end-column="64" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/WeightedEdge.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/DemoAlternateExampleSolution.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/WeightedEdge.java" />
     <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/Vertex.java" />
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/DemoLectureExampleSolution.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolverOutcome.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/ShortestPathsSolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/LazySolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/AStarGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/DemoLectureExampleSolution.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolverOutcome.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/ShortestPathsSolver.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/LazySolver.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/AStarGraph.java" />
     <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TETile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2306">
@@ -753,53 +560,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/WeightedDirectedGraph.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-124">
-          <caret line="13" selection-start-line="13" selection-end-line="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#871#872#0" expanded="true" />
-            <element signature="e#905#906#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/AStarSolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="42" selection-start-line="20" selection-start-column="23" selection-end-line="20" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8">
-          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/lectureexample/WeightedDirectedGraph.java" />
+    <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/AStarSolver.java" />
     <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Characters.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="24" selection-start-line="6" selection-start-column="24" selection-end-line="6" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/InputString.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#401#402#0" expanded="true" />
-            <element signature="e#446#447#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,46 +576,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java">
+    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#527#528#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Menu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding>
-            <element signature="e#1465#1466#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Saver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/InputKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="28" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="776" selection-start-line="776" selection-end-line="776" />
+        <state relative-caret-position="392">
+          <caret line="68" column="18" selection-start-line="68" selection-start-column="18" selection-end-line="68" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -858,15 +588,63 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
+        <state relative-caret-position="561">
           <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java">
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/InputString.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="177" column="49" selection-start-line="177" selection-start-column="42" selection-end-line="177" selection-end-column="49" />
+        <state relative-caret-position="289">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="7" selection-start-line="7" selection-start-column="7" selection-end-line="7" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/InputKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="28" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Saver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="99">
+          <caret line="74" column="8" selection-start-line="74" selection-start-column="8" selection-end-line="74" selection-end-column="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

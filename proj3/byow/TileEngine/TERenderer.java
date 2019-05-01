@@ -52,21 +52,21 @@ public class TERenderer {
         hover = Tileset.AVATAR_A_3;
         currentWorld = new TETile[w][h];
         flavor = new HashMap<String, String>();
-        flavor.put("EmptyA", "Ah.. the blue sea. We can see that the sea is blue," +
-                " yes, very blue.");
+        flavor.put("EmptyA", "Ah.. the blue sea. We can see that the sea is blue,"
+                        + " yes, very blue.");
         flavor.put("FloorA", "This is green grass. Legends say that the grass is… green.");
-        flavor.put("WallA", "Hm… the bush seems very bushy. I don’t think I can walk through " +
-                "it.");
+        flavor.put("WallA", "Hm… the bush seems very bushy. I don’t think I can walk through "
+                + "it.");
         flavor.put("AvatarA", "Hey! It’s not nice to poke me with the mouse.");
         flavor.put("TrapA", "Seems like Haunter is asleep, best not wake him up!");
         flavor.put("FlagA", "HELP IM LOST :(");
 
-        flavor.put("EmptyB", "Brrrr! When’d it get so chilly? I wonder if my weight can break " +
-                "the ice.");
-        flavor.put("FloorB", "Wowa! These floors are slippery. Walking in a winter wonderland u" +
-                "wu.");
-        flavor.put("WallB", "Hm… the wall is not very bushy. I still don’t think I can walk thr" +
-                "ough though.");
+        flavor.put("EmptyB", "Brrrr! When’d it get so chilly? I wonder if my weight can break "
+                + "the ice.");
+        flavor.put("FloorB", "Wowa! These floors are slippery. Walking in a winter wonderland u"
+                + "wu.");
+        flavor.put("WallB", "Hm… the wall is not very bushy. I still don’t think I can walk thr"
+                + "ough though.");
         flavor.put("AvatarB", "Hey! It’s not nice to poke me with the mouse.");
         flavor.put("TrapB", "Seems like Haunter is asleep, best not wake him up!");
         flavor.put("FlagB", "HELP IM LOST :(");

@@ -72,7 +72,7 @@ public class Engine {
         TETile[][] inputReturn = new TETile[WIDTH][HEIGHT];
 
         String seed = "";
-        String currWorld = "";
+        currWorld = "";
 
         while (allCommands.possibleNextInput()) {
             char item = allCommands.getNextKey();
@@ -624,8 +624,8 @@ public class Engine {
     private void addFlag(TETile[][] world) {
         boolean found = true;
         while (found) {
-            int randX = StdRandom.uniform(1, WIDTH-1);
-            int randY = StdRandom.uniform(1, HEIGHT-1);
+            int randX = StdRandom.uniform(1, WIDTH - 1);
+            int randY = StdRandom.uniform(1, HEIGHT - 1);
             if (world[randX][randY].description().equals("Floor")) {
                 char p1 = Tileset.FLAG_A.character();
                 Color p2 = Color.BLACK;
@@ -734,8 +734,8 @@ public class Engine {
                         Color p2 = Color.BLACK;
                         Color p3 = p2;
                         String p4 = Tileset.WALL_A_0000.description();
-                        String p5 = Tileset.PREFIX_PATH + "WALL_" + biome + "_" + texture +
-                                ".png";
+                        String p5 = Tileset.PREFIX_PATH + "WALL_" + biome + "_" + texture
+                                + ".png";
                         TETile add = new TETile(p1, p2, p3, p4, p5);
                         finalWorldFrame[w][h] = add;
                     }
