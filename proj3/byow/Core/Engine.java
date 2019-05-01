@@ -146,6 +146,11 @@ public class Engine {
         return inputReturn;
     }
 
+    private TETile[][] slowInputWithString(String input) {
+        InputString allCommands = new InputString(input);
+        return interactGeneral(allCommands);
+    }
+
     private TETile[][] interactGeneral(Inputs allCommands) {
         TETile[][] activeWorld = new TETile[WIDTH][HEIGHT];
         //Open menu
@@ -183,10 +188,14 @@ public class Engine {
             } else if (menuOption == 'L') {
                 SLOW = false;
                 activeWorld = interactWithInputString(Saver.loadWorld());
+                ter.initialize(WIDTH + 10, HEIGHT);
+                ter.renderFrame(activeWorld);
                 pastMenu = true;
             } else if (menuOption == 'R') {
                 SLOW = true;
-                activeWorld = interactWithInputString(Saver.loadWorld());
+                activeWorld = slowInputWithString(Saver.loadWorld());
+                ter.initialize(WIDTH + 10, HEIGHT);
+                ter.renderFrame(activeWorld);
                 SLOW = false;
                 pastMenu = true;
             } else if (menuOption == 'P') {
