@@ -16,10 +16,10 @@ public class Saver implements Serializable {
             os.writeObject(currWorld);
         }  catch (FileNotFoundException e) {
             System.out.println("file not found");
-            System.exit(0);
+            //System.exit(0);
         } catch (IOException e) {
             System.out.println(e);
-            System.exit(0);
+            //System.exit(0);
         }
     }
 
@@ -35,13 +35,13 @@ public class Saver implements Serializable {
                 return returnString;
             } catch (FileNotFoundException e) {
                 System.out.println("file not found");
-                System.exit(0);
+                //System.exit(0);
             } catch (IOException e) {
                 System.out.println(e);
-                System.exit(0);
+                //System.exit(0);
             } catch (ClassNotFoundException e) {
                 System.out.println("class not found");
-                System.exit(0);
+                //System.exit(0);
             }
         }
         return ""; //just for it to compile

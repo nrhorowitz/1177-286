@@ -316,7 +316,6 @@ public class Engine {
         // 5) Add floors  (to final world frame)
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
         // 7) Big flex owo
-        System.out.println("Generating world");
         this.seed(input);  // 0)
         if (StdRandom.uniform(0, 2) == 0) {
             biome = "A";
