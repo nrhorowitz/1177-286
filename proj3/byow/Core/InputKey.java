@@ -13,7 +13,6 @@ public class InputKey implements Inputs {
     }
 
     public char getNextKey() {
-        System.out.println("next");
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char c = Character.toUpperCase(StdDraw.nextKeyTyped());

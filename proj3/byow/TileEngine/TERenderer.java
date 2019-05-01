@@ -137,6 +137,8 @@ public class TERenderer {
         StdDraw.text(75.0, 32.0, "Current Tile: " + currentTile);
         StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
         StdDraw.text(75.0, 30.0, "Hover: " + hover);
+        String xy = StdDraw.mouseX() + "_" + StdDraw.mouseY();////TEMP
+        StdDraw.text(75.0, 25.0, xy);
     }
 
     public void updateHover(String mouseXY) {
