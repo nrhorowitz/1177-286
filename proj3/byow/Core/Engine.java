@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.LinkedList;
 
 import java.awt.Color;
+import java.util.concurrent.TimeUnit;
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -33,6 +34,7 @@ public class Engine {
     Map<String, Integer> locToAStar; //Maps a location to a Integer for AStar
     Map<Integer, String> AStarToLoc; //Maps a Integer to a location for AStar
     WeightedDirectedGraph wdg;
+    private static boolean SLOW = false;
 
     /* TODO: --master
     1) menu show seed inputs --done
@@ -125,7 +127,13 @@ public class Engine {
                 ter.initialize(WIDTH + 10, HEIGHT);
                 ter.renderFrame(activeWorld);
             } else if (menuOption == 'L') {
+                SLOW = false;
                 activeWorld = interactWithInputString(Saver.loadWorld());
+                pastMenu = true;
+            } else if (menuOption == 'R') {
+                SLOW = true;
+                activeWorld = interactWithInputString(Saver.loadWorld());
+                SLOW = false;
                 pastMenu = true;
             } else if (menuOption == 'Q') {
                 System.exit(0);
@@ -136,6 +144,13 @@ public class Engine {
 
         //Commands after world creation
         while (allCommands.possibleNextInput()) {
+            if (SLOW) {
+                try {
+                    Thread.sleep(150);
+                } catch (Exception e) {
+
+                }
+            }
             char c = allCommands.getNextKey();
             if (c == ':') {
                 while (allCommands.possibleNextInput()) {

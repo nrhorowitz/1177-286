@@ -1,5 +1,7 @@
 package byow.Core;
 
+import java.util.concurrent.TimeUnit;
+
 public class InputString implements Inputs {
     private String input;
     private int index;

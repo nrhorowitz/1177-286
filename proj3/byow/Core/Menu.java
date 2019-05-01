@@ -22,13 +22,14 @@ public class Menu {
         StdDraw.setFont();
         StdDraw.text(0.5, 0.35, "New Game (N)");
         StdDraw.text(0.5, 0.30, "Load Game (L)");
-        StdDraw.text(0.5, 0.25, "Quit (Q)");
+        StdDraw.text(0.5, 0.25, "Replay Last Game (R)");
+        StdDraw.text(0.5, 0.20, "Quit (Q)");
         //StdDraw.show();
     }
 
     public void drawSeed(String seed) {
         drawMe();
-        StdDraw.text(0.5, 0.20, "Seed: " + seed);
+        StdDraw.text(0.5, 0.15, "Seed: " + seed);
     }
 
     public void invalidSeed(char key, String seed) {
