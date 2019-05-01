@@ -528,7 +528,7 @@ public class Engine {
                 int left = Integer.parseInt(roomDataArray[1]);
                 finalWorldFrame[left][bot] = avatar.getTiles()[3];
                 String loc = bot + "_" + left;
-                avatarData = bot + "_" + left + "_6"; //y axis, x axis
+                avatarData = bot + "_" + left + "_8"; //y axis, x axis
                 avatar.setLocation(loc);
                 break;
             }
@@ -542,7 +542,7 @@ public class Engine {
         for (int x = 1; x < WIDTH - 1; x += 1) {
             for (int y = 1; y < HEIGHT - 1; y += 1) {
                 if (finalWorldFrame[x][y].description().equals("Floor") && NUM_OF_TRAPS > 0) {
-                    if (StdRandom.uniform(0, 30) == 0) {
+                    if (StdRandom.uniform(0, 10) == 0) {
                         char p1 = Tileset.ENEMY_A_3.character();
                         Color p2 = Color.BLACK;
                         Color p3 = p2;

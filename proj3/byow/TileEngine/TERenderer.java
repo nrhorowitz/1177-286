@@ -57,12 +57,14 @@ public class TERenderer {
         flavor.put("WallA", "Hm… the bush seems very bushy. I don’t think I can walk through it.");
         flavor.put("AvatarA", "Hey! It’s not nice to poke me with the mouse.");
         flavor.put("TrapA", "Seems like Haunter is asleep, best not wake him up!");
+        flavor.put("FlagA", "HELP IM LOST :(");
 
         flavor.put("EmptyB", "Brrrr! When’d it get so chilly? I wonder if my weight can break the ice.");
         flavor.put("FloorB", "Wowa! These floors are slippery. Walking in a winter wonderland uwu.");
         flavor.put("WallB", "Hm… the wall is not very bushy. I still don’t think I can walk through though.");
         flavor.put("AvatarB", "Hey! It’s not nice to poke me with the mouse.");
         flavor.put("TrapB", "Seems like Haunter is asleep, best not wake him up!");
+        flavor.put("FlagB", "HELP IM LOST :(");
 
         StdDraw.enableDoubleBuffering();
         StdDraw.show();

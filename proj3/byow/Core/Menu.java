@@ -43,7 +43,6 @@ public class Menu {
     public void invalidCommand(char c) {
         drawMe();
         StdDraw.text(0.5, 0.15, c + " is an invalid command, please key in 'N', 'L', or 'Q'");
-
     }
 
     public void drawLore() {
