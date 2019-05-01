@@ -85,8 +85,26 @@ public class Engine {
         // See proj3.byow.InputDemo for a demo of how you can make a nice clean interface
         // that works for many different input types.
         InputString allCommands = new InputString(input);
-        //THIS IS JUST A TEMP PLACEHOLDER TO PREVENT ERRORS
-        return interactGeneral(allCommands);
+        //Assumes input String only in format "
+        TETile[][] inputReturn = new TETile[WIDTH][HEIGHT];
+
+        String seed = "";
+        String moves = "";
+        while (allCommands.possibleNextInput()) {
+            char item = allCommands.getNextKey();
+            if (Character.isDigit(item)) {
+                seed += item;
+            } else if (item == 'W' || item == 'A' || item == 'S' || item == 'D') {
+                moves += item;
+            }
+        }
+
+        inputReturn = generateWorld(seed);
+        for (char move : moves.toCharArray()) {
+            moveCharacter(inputReturn, move, false);
+        }
+
+        return inputReturn;
     }
 
     private TETile[][] interactGeneral(Inputs allCommands) {
@@ -165,7 +183,7 @@ public class Engine {
                     }
                 }
             } else if (c == 'W' || c == 'S' || c == 'A' || c == 'D') { //UPDATES ACTIVE WORLD
-                moveCharacter(activeWorld, c);
+                moveCharacter(activeWorld, c, true);
                 ter.renderFrame(activeWorld);
             } else {
                 System.out.println("Movement option not recognized");
@@ -182,7 +200,7 @@ public class Engine {
      * @param world of tiles
      * @param movement character
      */
-    public void moveCharacter(TETile[][] world, char movement) {
+    public void moveCharacter(TETile[][] world, char movement, boolean render) {
         //TODO: increment time by 1 for frame counter
         String[] avatarDataArray = avatarData.split("_");
         int botTop = Integer.parseInt(avatarDataArray[0]);
@@ -213,7 +231,9 @@ public class Engine {
         TETile destination = world[destinationX][destinationY];
         if (destination.description().equals("Floor")) {
             avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
-            ter.updateCurrentTile(avatarData);
+            if (render) {
+                ter.updateCurrentTile(avatarData);
+            }
             world[destinationX][destinationY] = directionalTile;
             p1 = Tileset.FLOOR_A_0000.character();
             p2 = Color.BLACK;
@@ -224,7 +244,9 @@ public class Engine {
             world[leftRight][botTop] = add;
         } else if(destination.description().equals("Trap")) {
             avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
-            ter.updateCurrentTile(avatarData);
+            if (render) {
+                ter.updateCurrentTile(avatarData);
+            }
             world[destinationX][destinationY] = directionalTile;
             p1 = Tileset.FLOOR_A_0000.character();
             p2 = Color.BLACK;
@@ -236,10 +258,10 @@ public class Engine {
             String[] a = avatarData.split("_");
             int currentHealth = Integer.parseInt(a[2]);
             avatarData = a[0] + "_" + a[1] + "_" + (currentHealth - 1);
-            if (currentHealth == 1) {
+            if (currentHealth == 1 && render) {
                 ter.gameOver();
             }
-        } else if (destination.description().equals("Flag")) {
+        } else if (destination.description().equals("Flag") && render) {
             ter.winGame();
         } else {
             //something blocking
