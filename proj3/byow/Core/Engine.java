@@ -13,10 +13,7 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.LinkedList;
-
 import java.awt.Color;
-import java.util.concurrent.TimeUnit;
 
 public class Engine {
     TERenderer ter = new TERenderer();
@@ -103,6 +100,7 @@ public class Engine {
         boolean pastMenu = false;
         while (allCommands.possibleNextInput() && !pastMenu) {
             menuOption = allCommands.getNextKey();
+            begin.drawMe();
             //Does the appropriate thing depending on menuOption
             if (menuOption == 'N') {
                 pastMenu = true;
@@ -137,6 +135,8 @@ public class Engine {
                 activeWorld = interactWithInputString(Saver.loadWorld());
                 SLOW = false;
                 pastMenu = true;
+            } else if (menuOption == 'P') {
+                begin.drawLore();
             } else if (menuOption == 'Q') {
                 System.exit(0);
             } else {
