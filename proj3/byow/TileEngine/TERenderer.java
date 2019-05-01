@@ -21,6 +21,7 @@ public class TERenderer {
     private int yOffset;
     private String biome;
     private static String hover="";
+    private static String currentTile = "Floor"; //Avatar always spawns on a floor
     private static TETile[][] currentWorld;
 
     /**
@@ -121,7 +122,7 @@ public class TERenderer {
         //Player Name
         StdDraw.setFont(new Font("Arial", Font.BOLD, 21));
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(75.0, 37.5, "PlayerName"); //TODO?
+        StdDraw.text(75.0, 37.5, "Pikachu"); //TODO?
         //Biome
         StdDraw.setFont(new Font("Arial", Font.BOLD, 11));
         StdDraw.text(75.0, 36.0, "Biome: " + biome);
@@ -133,10 +134,9 @@ public class TERenderer {
         }
         //Display Current Tile
         StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
-        StdDraw.text(74.0, 32.0, "Current Tile:");
-        StdDraw.setFont(new Font("Arial", Font.BOLD, 20));
-        System.out.println("hover is" + hover);
-        StdDraw.text(64.0, 30.0, "HOVER:" + hover);
+        StdDraw.text(75.0, 32.0, "Current Tile: " + currentTile);
+        StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
+        StdDraw.text(75.0, 30.0, "Hover: " + hover);
     }
 
     public void updateHover(String mouseXY) {
@@ -144,7 +144,14 @@ public class TERenderer {
         int mouseX = Integer.parseInt(mouseDataArray[0]);
         int mouseY = Integer.parseInt(mouseDataArray[1]);
         hover = currentWorld[mouseX][mouseY].description();
-        System.out.println(hover);
+        this.renderFrame(currentWorld);
+    }
+
+    public void updateCurrentTile(String predictedLocation) {
+        String[] predictedLocationArray = predictedLocation.split("_");
+        int avatarX = Integer.parseInt(predictedLocationArray[1]);
+        int avatarY = Integer.parseInt(predictedLocationArray[0]);
+        currentTile = currentWorld[avatarX][avatarY].description();
         this.showInventory();
     }
 }

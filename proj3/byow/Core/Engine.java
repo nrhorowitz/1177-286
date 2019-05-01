@@ -24,6 +24,7 @@ public class Engine {
     int totalSectors;
     public static String avatarData;
     String currWorld;
+    Characters[] characters; //index 0 == avatar
 
     /* TODO: --master
     1) menu show seed inputs --done
@@ -31,13 +32,11 @@ public class Engine {
     3) :Q --done
     4) Load --done
     5) line of sight bubble --NOT DONE
-    6) Health ------- 6* heart png --done with display, decrement from avatarData to take damage
+    6) Health ------- 6* heart png --done with display, not done with decrement from avatarData to take damage
     7) Creative writing --NOT DONE
-    8) avatar / heart / enemy --> resources --NOT DONE
-    NOTE: HUD only displays string with delay,
-    --print statements show continious data but for some reason does not display immediately
-    --see TERednerer line 139
-
+    8) avatar / heart / enemy --> resources -- NOT DONE (enemies added but they don't move yet
+    9) Make sure menu doesn't get stuck with invalid inputs --> DONE
+    NOTE: HUD only displays string with delay, --> DONE
      */
 
     /**
@@ -84,19 +83,17 @@ public class Engine {
     }
 
     private TETile[][] interactGeneral(Inputs allCommands) {
-        TETile[][] activeWorld = new TETile[WIDTH][HEIGHT]; //TODO: Figure if this will ever be used
+        TETile[][] activeWorld = new TETile[WIDTH][HEIGHT];
         //Open menu
         Menu begin = new Menu();
         //Take in first command: N, L, or Q, if no commands default Quits
         char menuOption = 'I';
-        if (allCommands.possibleNextInput()) {
+        boolean pastMenu = false;
+        while (allCommands.possibleNextInput() && !pastMenu) {
             menuOption = allCommands.getNextKey();
-        }
-        //Does the appropriate thing depending on menuOption
-        //TODO: check if/else statements to act according to specs
-        //TODO: Need to figure out how to close menu
-        switch (menuOption) {
-            case 'N':
+            //Does the appropriate thing depending on menuOption
+            if (menuOption == 'N') {
+                pastMenu = true;
                 currWorld = "";
                 currWorld += menuOption;
                 //Generates a random world
@@ -113,25 +110,23 @@ public class Engine {
                         currWorld += c;
                         looking = false;
                     } else {
-                        System.out.println("Invalid command, please key in digit or 'S'");
+                        begin.invalidSeed(c, seed);
                     }
                 }
                 activeWorld = generateWorld(seed);
-                ter.initialize(WIDTH+10, HEIGHT);
+                ter.initialize(WIDTH + 10, HEIGHT);
                 ter.renderFrame(activeWorld);
-                break;
-            case 'L':
+            } else if (menuOption == 'L') {
                 activeWorld = interactWithInputString(Saver.loadWorld());
-                break;
-            case 'Q':
+                pastMenu = true;
+            } else if (menuOption == 'Q') {
                 System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid command, please key in either 'N', 'L', or 'Q'");
+            } else {
+                begin.invalidCommand(menuOption);
+            }
         }
 
         //Commands after world creation
-        String commands = "";
         while (allCommands.possibleNextInput()) {
             char c = allCommands.getNextKey();
             if (c == ':') {
@@ -153,11 +148,8 @@ public class Engine {
                 //throw new IllegalArgumentException("Movement option not recognized");
             }
             currWorld += c;
-            //Add an update frame method draw active world with sprites
-            //stringToArray(activeWorld);
         }
 
-        //JUST A TEMP PLACEHOLDER TO PREVENT ERRORS --> ONLY GENERATES PHASE 1 WORLD
         return activeWorld;
     }
 
@@ -190,6 +182,7 @@ public class Engine {
         TETile destination = world[destinationX][destinationY];
         if (destination.description().equals("Floor")) {
             avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
+            ter.updateCurrentTile(avatarData);
             world[destinationX][destinationY] = directionalTile;
             world[leftRight][botTop] = Tileset.FLOOR_A_0000;
         } else {
@@ -218,7 +211,10 @@ public class Engine {
         addWalls(finalWorldFrame);  // 6)
         addWalls(finalWorldFrame);  // 6) for textures
         addWater(finalWorldFrame);  // 7)
-        addAvatar(finalWorldFrame); //Adds Avatar to the world somewhat randomly
+        //filling out characters array with characters index 0 = avatar
+        createCharacters(4);
+        addCharacters(finalWorldFrame, characters); //Adds all characters to the world somewhat randomly
+        //Adds enemy into the world somewhat randomly
         return finalWorldFrame;
     }
 
@@ -435,23 +431,43 @@ public class Engine {
         }
     }
 
-    /** AddAvatar adds an avatar tile to the world map
-     * @param finalWorldFrame of type TETile[][]
-     * TODO: Replace avatar tile
+    /** createCharacters fills in the character array with n enemies and 1 avatar
+     * Ensure n is never greater than number of raw rooms
+     * @param n of type int
      */
-    private void addAvatar(TETile[][] finalWorldFrame) {
+    private void createCharacters(int n) {
+        characters = new Characters[n + 1];
+        characters[0] = new AvatarCharacter();
+        for (int i = 1; i < n + 1; i += 1) {
+            characters[i] = new EnemyCharacter();
+        }
+    }
+
+    /** addCharacters adds all characters into a tile in the world
+     * @param finalWorldFrame of type TETile[][]
+     */
+    private void addCharacters(TETile[][] finalWorldFrame, Characters[] characters) {
+        int currCharacter = 0;
         for (int i = 0; i < totalSectors; i += 1) {
+            if (currCharacter >= characters.length) {
+                break;
+            }
             if (rooms.containsKey(i)) {
                 String roomData = rooms.get(i);
                 String[] roomDataArray = roomData.split("_");
                 int bot = Integer.parseInt(roomDataArray[0]);
                 int left = Integer.parseInt(roomDataArray[1]);
-                finalWorldFrame[left][bot] = Tileset.AVATAR_A_3;
-                avatarData = bot + "_" + left + "_5"; //y axis, x axis
-                return;
+                finalWorldFrame[left][bot] = characters[currCharacter].getTiles()[3];
+                String loc = bot + "_" + left;
+                if (currCharacter == 0) {
+                    avatarData = bot + "_" + left + "_5"; //y axis, x axis
+                }
+                characters[currCharacter].setLocation(loc);
+                currCharacter += 1;
             }
         }
     }
+
 
     /**
      * Adjacent returns array of size 4

@@ -30,4 +30,15 @@ public class Menu {
         drawMe();
         StdDraw.text(0.5, 0.20, "Seed: " + seed);
     }
+
+    public void invalidSeed(char key, String seed) {
+        drawMe();
+        drawSeed(seed);
+        StdDraw.text(0.5, 0.15, key + " is an invalid command, please key in a digit or 'S'");
+    }
+
+    public void invalidCommand(char c) {
+        drawMe();
+        StdDraw.text(0.5, 0.15, c + " is an invalid command, please key in 'N', 'L', or 'Q'");
+    }
 }
