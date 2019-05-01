@@ -1,5 +1,6 @@
 package byow.Core;
 
+import byow.ASTAR.bearmaps.hw4.lectureexample.WeightedDirectedGraph;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
@@ -25,6 +26,9 @@ public class Engine {
     public static String avatarData;
     String currWorld;
     Characters[] characters; //index 0 == avatar
+    int numOfVertices;
+    HashMap<String, Integer> graph; //Maps a location to a Integer for AStar
+    WeightedDirectedGraph wdg;
 
     /* TODO: --master
     1) menu show seed inputs --done
@@ -206,16 +210,53 @@ public class Engine {
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
+        graph = new HashMap<>();
         addFloors(finalWorldFrame);  // 5)
+        //Add vertices to the graph
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
         addWalls(finalWorldFrame);  // 6) for textures
         addWater(finalWorldFrame);  // 7)
-        //filling out characters array with characters index 0 = avatar
-        createCharacters(4);
+        addVertices(finalWorldFrame);//filling out characters array with characters index 0 = avatar
+        createCharacters(2);
         addCharacters(finalWorldFrame, characters); //Adds all characters to the world somewhat randomly
         //Adds enemy into the world somewhat randomly
         return finalWorldFrame;
+    }
+
+    /**
+     * Adds all the vertices (Integers) into the AStarGraph
+     */
+    private void addVertices(TETile[][] finalWorldFrame) {
+        wdg = new WeightedDirectedGraph(numOfVertices);
+        for (String coordinates : graph.keySet()) {
+            String[] coordinatesArray = coordinates.split("_");
+            int x = Integer.parseInt(coordinatesArray[1]);
+            int y = Integer.parseInt(coordinatesArray[0]);
+
+            int[] adjData = adjacent(finalWorldFrame, y, x); //left top right bot/2 = floor
+            for (int i = 0; i < adjData.length; i += 1) {
+                if (adjData[i] == 2) {
+                    if (i == 0) {
+                        int left = x - 1;
+                        String leftKey = y + "_" + left;
+                        wdg.addEdge(graph.get(coordinates), graph.get(leftKey), 1);
+                    } else if (i == 1) {
+                        int top = y + 1;
+                        String topKey = top + "_" + x;
+                        wdg.addEdge(graph.get(coordinates), graph.get(topKey), 1);
+                    } else if (i == 2) {
+                        int right = x + 1;
+                        String rightKey = y + "_" + right;
+                        wdg.addEdge(graph.get(coordinates), graph.get(rightKey), 1);
+                    } else if (i == 3) {
+                        int bot = y - 1;
+                        String botKey = bot + "_" + x;
+                        wdg.addEdge(graph.get(coordinates), graph.get(botKey), 1);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -403,7 +444,6 @@ public class Engine {
                     }
                 }
             }
-
         }
     }
 
@@ -424,6 +464,8 @@ public class Engine {
                     for (int y = bot; y <= top; y += 1) {
                         for (int x = left; x <= right; x += 1) {
                             finalWorldFrame[x][y] = Tileset.FLOOR_A_0000;
+                            graph.put(y + "_" + x, numOfVertices);
+                            numOfVertices += 1;
                         }
                     }
                 }

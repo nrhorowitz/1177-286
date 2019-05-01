@@ -16,18 +16,19 @@ public class EnemyCharacter implements Characters {
         tiles[2] = Tileset.ENEMY_A_2;
         tiles[3] = Tileset.ENEMY_A_3;
     }
+    @Override
     public String getName() {
         return name;
     }
-
+    @Override
     public TETile[] getTiles() {
         return tiles;
     }
-
+    @Override
     public String getLocation() {
         return data;
     }
-
+    @Override
     public void setLocation(String data) {
         this.data = data;
     }
