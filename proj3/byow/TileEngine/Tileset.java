@@ -52,13 +52,13 @@ public class Tileset {
     public static final TETile AVATAR_A_3 =
             new TETile('a', Color.RED, Color.RED, "Avatar", PREFIX_PATH + "AVATAR_A_3.png");
     public static final TETile ENEMY_A_0 =
-            new TETile('a', Color.RED, Color.RED, "Enemy", PREFIX_PATH + "ENEMY_A_0.png");
+            new TETile('a', Color.RED, Color.RED, "Trap", PREFIX_PATH + "TRAP_A_0.png");
     public static final TETile ENEMY_A_1 =
-            new TETile('a', Color.RED, Color.RED, "Enemy", PREFIX_PATH + "ENEMY_A_1.png");
+            new TETile('a', Color.RED, Color.RED, "Trap", PREFIX_PATH + "TRAP_A_1.png");
     public static final TETile ENEMY_A_2 =
-            new TETile('a', Color.RED, Color.RED, "Enemy", PREFIX_PATH + "ENEMY_A_2.png");
+            new TETile('a', Color.RED, Color.RED, "Trap", PREFIX_PATH + "TRAP_A_2.png");
     public static final TETile ENEMY_A_3 =
-            new TETile('a', Color.RED, Color.RED, "Enemy", PREFIX_PATH + "ENEMY_A_3.png");
+            new TETile('a', Color.RED, Color.RED, "Trap", PREFIX_PATH + "TRAP_A_3.png");
 }
 
 

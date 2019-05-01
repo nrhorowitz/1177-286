@@ -23,6 +23,7 @@ public class Engine {
     /* Feel free to change the width and height. */
     public static final int WIDTH = Main.WIDTH;
     public static final int HEIGHT = Main.HEIGHT;
+    private static final int NUM_OF_TRAPS = 10;
     Map<Integer, String> rooms;
     Set<String> pivots;
     Set<String> copy;
@@ -35,6 +36,7 @@ public class Engine {
     Map<Integer, String> AStarToLoc; //Maps a Integer to a location for AStar
     WeightedDirectedGraph wdg;
     private static boolean SLOW = false;
+    public static String biome;
 
     /* TODO: --master
     1) menu show seed inputs --done
@@ -192,25 +194,55 @@ public class Engine {
         int destinationY = botTop;
         int destinationX = leftRight;
         TETile directionalTile = Tileset.AVATAR_A_3;
+        int direction = 0;
         if (movement == 'W') {
             destinationY += 1;
-            directionalTile = Tileset.AVATAR_A_1;
+            direction = 1;
         } else if (movement == 'S') {
             destinationY -= 1;
-            directionalTile = Tileset.AVATAR_A_3;
+            direction = 3;
         } else if (movement == 'A') {
             destinationX -= 1;
-            directionalTile = Tileset.AVATAR_A_0;
+            direction = 0;
         } else if (movement == 'D') {
             destinationX += 1;
-            directionalTile = Tileset.AVATAR_A_2;
+            direction = 2;
         }
+        char p1 = Tileset.AVATAR_A_3.character();
+        Color p2 = Color.BLACK;
+        Color p3 = p2;
+        String p4 = Tileset.AVATAR_A_3.description();
+        String p5 = Tileset.PREFIX_PATH + "AVATAR_" + biome + "_" + direction + ".png";
+        directionalTile = new TETile(p1, p2, p3, p4, p5);
         TETile destination = world[destinationX][destinationY];
         if (destination.description().equals("Floor")) {
             avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
             ter.updateCurrentTile(avatarData);
             world[destinationX][destinationY] = directionalTile;
-            world[leftRight][botTop] = Tileset.FLOOR_A_0000;
+            p1 = Tileset.FLOOR_A_0000.character();
+            p2 = Color.BLACK;
+            p3 = p2;
+            p4 = Tileset.FLOOR_A_0000.description();
+            p5 = Tileset.PREFIX_PATH + "FLOOR_" + biome + "_0000.png";
+            TETile add = new TETile(p1, p2, p3, p4, p5);
+            world[leftRight][botTop] = add;
+        } else if(destination.description().equals("Trap")) {
+            avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
+            ter.updateCurrentTile(avatarData);
+            world[destinationX][destinationY] = directionalTile;
+            p1 = Tileset.FLOOR_A_0000.character();
+            p2 = Color.BLACK;
+            p3 = p2;
+            p4 = Tileset.FLOOR_A_0000.description();
+            p5 = Tileset.PREFIX_PATH + "FLOOR_" + biome + "_0000.png";
+            TETile add = new TETile(p1, p2, p3, p4, p5);
+            world[leftRight][botTop] = add;
+            String[] a = avatarData.split("_");
+            int currentHealth = Integer.parseInt(a[2]);
+            avatarData = a[0] + "_" + a[1] + "_" + (currentHealth - 1);
+            if (currentHealth == 0) {
+                //
+            }
         } else {
             //something blocking
             world[leftRight][botTop] = directionalTile;
@@ -250,6 +282,11 @@ public class Engine {
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
         // 7) Big flex owo
         this.seed(input);  // 0)
+        if (StdRandom.uniform(0, 2) == 0) {
+            biome = "A";
+        } else {
+            biome = "B";
+        }
         TETile[][] finalWorldFrame = new TETile[WIDTH][HEIGHT];
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
@@ -263,7 +300,7 @@ public class Engine {
         addWalls(finalWorldFrame);  // 6) for textures
         addWater(finalWorldFrame);  // 7)
         addVertices(finalWorldFrame);//filling out characters array with characters index 0 = avatar
-        createCharacters(2);
+        createCharacters(NUM_OF_TRAPS);
         addCharacters(finalWorldFrame, characters); //Adds all characters to the world somewhat randomly
         //Adds enemy into the world somewhat randomly
         return finalWorldFrame;
@@ -498,36 +535,43 @@ public class Engine {
             int bot = Math.min(starty, endy);
             int right = Math.max(startx, endx);
             int top = Math.max(starty, endy);
+            char p1 = Tileset.FLOOR_A_0000.character();
+            Color p2 = Color.BLACK;
+            Color p3 = p2;
+            String p4 = Tileset.FLOOR_A_0000.description();
+            String p5 = Tileset.PREFIX_PATH + "FLOOR_" + biome + "_0000.png";
+            TETile add = new TETile(p1, p2, p3, p4, p5);
+            //////////////
             if ((startx < endx && starty < endy) || (endx < startx && endy < starty)) {
                 if (StdRandom.uniform(0, 2) == 0) {
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][bot] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[i][bot] = add;
                     }
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[right][j] = add;
                     }
                 } else {
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[left][j] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[left][j] = add;
                     }
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[i][top] = add;
                     }
                 }
             } else {
                 if (StdRandom.uniform(0, 2) == 0) {
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[i][top] = add;
                     }
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[right][j] = add;
                     }
                 } else {
                     for (int j = bot; j <= top; j += 1) {
-                        finalWorldFrame[right][j] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[right][j] = add;
                     }
                     for (int i = left; i <= right; i += 1) {
-                        finalWorldFrame[i][top] = Tileset.FLOOR_A_0000;
+                        finalWorldFrame[i][top] = add;
                     }
                 }
             }
@@ -551,7 +595,13 @@ public class Engine {
                     int right = Integer.parseInt(roomDataArray[j + 3]);
                     for (int y = bot; y <= top; y += 1) {
                         for (int x = left; x <= right; x += 1) {
-                            finalWorldFrame[x][y] = Tileset.FLOOR_A_0000;
+                            char p1 = Tileset.FLOOR_A_0000.character();
+                            Color p2 = Color.BLACK;
+                            Color p3 = p2;
+                            String p4 = Tileset.FLOOR_A_0000.description();
+                            String p5 = Tileset.PREFIX_PATH + "FLOOR_" + biome + "_0000.png";
+                            TETile add = new TETile(p1, p2, p3, p4, p5);
+                            finalWorldFrame[x][y] = add;
                             String key = y + "_" + x;
                             if (!locToAStar.containsKey(key)) {
                                 AStarToLoc.put(numOfVertices, key);
@@ -575,9 +625,9 @@ public class Engine {
      */
     private void createCharacters(int n) {
         characters = new Characters[n + 1];
-        characters[0] = new AvatarCharacter();
+        characters[0] = new AvatarCharacter(biome);
         for (int i = 1; i < n + 1; i += 1) {
-            characters[i] = new EnemyCharacter();
+            characters[i] = new EnemyCharacter(biome);
         }
     }
 
@@ -629,7 +679,7 @@ public class Engine {
                 returnArray[0] = 2;
             } else if (finalWorldFrame[w - 1][h].description().equals("Wall")) {
                 returnArray[0] = 1;
-            } else if (finalWorldFrame[w - 1][h].description().equals("Enemy")) {
+            } else if (finalWorldFrame[w - 1][h].description().equals("Trap")) {
                 returnArray[0] = 3;
             } else if (finalWorldFrame[w - 1][h].description().equals("Avatar")) {
                 returnArray[0] = 4;
@@ -640,7 +690,7 @@ public class Engine {
                 returnArray[1] = 2;
             } else if (finalWorldFrame[w][h + 1].description().equals("Wall")) {
                 returnArray[1] = 1;
-            } else if (finalWorldFrame[w][h + 1].description().equals("Enemy")) {
+            } else if (finalWorldFrame[w][h + 1].description().equals("Trap")) {
                 returnArray[1] = 3;
             } else if (finalWorldFrame[w][h + 1].description().equals("Avatar")) {
                 returnArray[1] = 4;
@@ -651,7 +701,7 @@ public class Engine {
                 returnArray[2] = 2;
             } else if (finalWorldFrame[w + 1][h].description().equals("Wall")) {
                 returnArray[2] = 1;
-            } else if (finalWorldFrame[w + 1][h].description().equals("Enemy")) {
+            } else if (finalWorldFrame[w + 1][h].description().equals("Trap")) {
                 returnArray[2] = 3;
             } else if (finalWorldFrame[w + 1][h].description().equals("Avatar")) {
                 returnArray[2] = 4;
@@ -662,7 +712,7 @@ public class Engine {
                 returnArray[3] = 2;
             } else if (finalWorldFrame[w][h - 1].description().equals("Wall")) {
                 returnArray[3] = 1;
-            } else if (finalWorldFrame[w][h - 1].description().equals("Enemy")) {
+            } else if (finalWorldFrame[w][h - 1].description().equals("Trap")) {
                 returnArray[3] = 3;
             } else if (finalWorldFrame[w][h - 1].description().equals("Avatar")) {
                 returnArray[3] = 4;
@@ -700,7 +750,7 @@ public class Engine {
                         Color p2 = Color.BLACK;
                         Color p3 = p2;
                         String p4 = Tileset.WALL_A_0000.description();
-                        String p5 = Tileset.PREFIX_PATH + "WALL_A_" + texture + ".png";
+                        String p5 = Tileset.PREFIX_PATH + "WALL_" + biome + "_" + texture + ".png";
                         TETile add = new TETile(p1, p2, p3, p4, p5);
                         finalWorldFrame[w][h] = add;
                     }
@@ -732,7 +782,7 @@ public class Engine {
                     Color p2 = Color.BLUE;
                     Color p3 = p2;
                     String p4 = Tileset.EMPTY_A_0000.description();
-                    String p5 = Tileset.PREFIX_PATH + "EMPTY_A_" + texture + ".png";
+                    String p5 = Tileset.PREFIX_PATH + "EMPTY_" + biome + "_" + texture + ".png";
                     TETile add = new TETile(p1, p2, p3, p4, p5);
                     finalWorldFrame[w][h] = add;
                 }

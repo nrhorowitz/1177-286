@@ -5,6 +5,8 @@ import edu.princeton.cs.introcs.StdDraw;
 import java.awt.Color;
 import java.awt.Font;
 import byow.Core.Engine;
+import java.util.Map;
+import java.util.HashMap;
 
 
 /**
@@ -20,9 +22,10 @@ public class TERenderer {
     private int xOffset;
     private int yOffset;
     private String biome;
-    private static String hover="";
+    private static TETile hover;
     private static String currentTile = "Floor"; //Avatar always spawns on a floor
     private static TETile[][] currentWorld;
+    private Map<String, String> flavor;
 
     /**
      * Same functionality as the other initialization method. The only difference is that the xOff
@@ -46,8 +49,20 @@ public class TERenderer {
 
         StdDraw.clear(new Color(0, 0, 0));
         biome = "";
-        //hover = "";
+        hover = Tileset.AVATAR_A_3;
         currentWorld = null;
+        flavor = new HashMap<String, String>();
+        flavor.put("EmptyA", "Ah.. the blue sea. We can see that the sea is blue, yes, very blue.");
+        flavor.put("FloorA", "This is green grass. Legends say that the grass is… green.");
+        flavor.put("WallA", "Hm… the bush seems very bushy. I don’t think I can walk through it.");
+        flavor.put("AvatarA", "Hey! It’s not nice to poke me with the mouse.");
+        flavor.put("TrapA", "Seems like Haunter is asleep, best not wake him up!");
+
+        flavor.put("EmptyB", "Brrrr! When’d it get so chilly? I wonder if my weight can break the ice.");
+        flavor.put("FloorB", "Wowa! These floors are slippery. Walking in a winter wonderland uwu.");
+        flavor.put("WallB", "Hm… the wall is not very bushy. I still don’t think I can walk through though.");
+        flavor.put("AvatarB", "Hey! It’s not nice to poke me with the mouse.");
+        flavor.put("TrapB", "Seems like Haunter is asleep, best not wake him up!");
 
         StdDraw.enableDoubleBuffering();
         StdDraw.show();
@@ -109,6 +124,8 @@ public class TERenderer {
         String[] biomeArray = world[0][0].filepath().split("_");
         if (biomeArray[1].equals("A")) {
             biome = "Tropical Islands";
+        } else if (biomeArray[1].equals("B")) {
+            biome = "Icy Tundra";
         } else {
             biome = "???";
         }
@@ -133,19 +150,33 @@ public class TERenderer {
             StdDraw.picture(71.5 + i, 34.5, Tileset.PREFIX_PATH + "HEALTH_A.png");
         }
         //Display Current Tile
+
         StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
-        StdDraw.text(75.0, 32.0, "Current Tile: " + currentTile);
+        StdDraw.text(75.0, 30.0, "Current Tile: " + hover.description());
+
         StdDraw.setFont(new Font("Arial", Font.BOLD, 15));
-        StdDraw.text(75.0, 30.0, "Hover: " + hover);
-        String xy = StdDraw.mouseX() + "_" + StdDraw.mouseY();////TEMP
-        StdDraw.text(75.0, 25.0, xy);
+        String message = flavorText(hover);
+        int length = message.length();
+        for (int i = 0; i <= (length / 16); i += 1) {
+            int endLength = 16;
+            if (message.length() < endLength) {
+                endLength = message.length();
+            }
+            StdDraw.text(75.0, 28.0 - (i), message.substring(0, endLength));
+            message = message.substring(endLength);
+        }
+    }
+
+    public String flavorText(TETile tile) {
+        String key = tile.description() + Engine.biome;
+        return flavor.get(key);
     }
 
     public void updateHover(String mouseXY) {
         String[] mouseDataArray = mouseXY.split("_");
         int mouseX = Integer.parseInt(mouseDataArray[0]);
         int mouseY = Integer.parseInt(mouseDataArray[1]);
-        hover = currentWorld[mouseX][mouseY].description();
+        hover = currentWorld[mouseX][mouseY];
         this.renderFrame(currentWorld);
     }
 
