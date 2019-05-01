@@ -139,7 +139,7 @@ public class TERenderer {
         //Player Name
         StdDraw.setFont(new Font("Arial", Font.BOLD, 21));
         StdDraw.setPenColor(StdDraw.BLACK);
-        StdDraw.text(75.0, 37.5, "Pikachu"); //TODO?
+        StdDraw.text(75.0, 37.5, "Pikachu");
         //Biome
         StdDraw.setFont(new Font("Arial", Font.BOLD, 11));
         StdDraw.text(75.0, 36.0, "Biome: " + biome);
@@ -186,5 +186,15 @@ public class TERenderer {
         int avatarY = Integer.parseInt(predictedLocationArray[0]);
         currentTile = currentWorld[avatarX][avatarY].description();
         this.showInventory();
+    }
+
+    public void gameOver() {
+        StdDraw.picture(40, 20, Tileset.PREFIX_PATH + "GAMEOVER.png");
+        StdDraw.show();
+        try {
+            Thread.sleep((long) 360000000);
+        } catch (Exception e) {
+
+        }
     }
 }

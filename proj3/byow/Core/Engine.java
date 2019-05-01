@@ -6,6 +6,7 @@ import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
 import byow.ASTAR.bearmaps.hw4.*;
 
+import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 import java.util.Map;
 import java.util.HashMap;
@@ -100,7 +101,6 @@ public class Engine {
         boolean pastMenu = false;
         while (allCommands.possibleNextInput() && !pastMenu) {
             menuOption = allCommands.getNextKey();
-            begin.drawMe();
             //Does the appropriate thing depending on menuOption
             if (menuOption == 'N') {
                 pastMenu = true;
@@ -139,6 +139,8 @@ public class Engine {
                 begin.drawLore();
             } else if (menuOption == 'Q') {
                 System.exit(0);
+            } else if (menuOption == 'B') {
+                begin.drawMe();
             } else {
                 begin.invalidCommand(menuOption);
             }
@@ -240,14 +242,15 @@ public class Engine {
             String[] a = avatarData.split("_");
             int currentHealth = Integer.parseInt(a[2]);
             avatarData = a[0] + "_" + a[1] + "_" + (currentHealth - 1);
-            if (currentHealth == 0) {
-                //
+            if (currentHealth == 1) {
+                ter.gameOver();
             }
         } else {
             //something blocking
             world[leftRight][botTop] = directionalTile;
         }
     }
+
 
     /**
      * At any given instance return path from enemy to avatar.
@@ -301,7 +304,7 @@ public class Engine {
         addWater(finalWorldFrame);  // 7)
         addVertices(finalWorldFrame);//filling out characters array with characters index 0 = avatar
         createCharacters(NUM_OF_TRAPS);
-        addCharacters(finalWorldFrame, characters); //Adds all characters to the world somewhat randomly
+        addAvatar(finalWorldFrame, characters[0]); //Adds all characters to the world somewhat randomly
         //Adds enemy into the world somewhat randomly
         return finalWorldFrame;
     }
@@ -634,24 +637,17 @@ public class Engine {
     /** addCharacters adds all characters into a tile in the world
      * @param finalWorldFrame of type TETile[][]
      */
-    private void addCharacters(TETile[][] finalWorldFrame, Characters[] characters) {
-        int currCharacter = 0;
+    private void addAvatar(TETile[][] finalWorldFrame, Characters avatar) {
         for (int i = 0; i < totalSectors; i += 1) {
-            if (currCharacter >= characters.length) {
-                break;
-            }
             if (rooms.containsKey(i)) {
                 String roomData = rooms.get(i);
                 String[] roomDataArray = roomData.split("_");
                 int bot = Integer.parseInt(roomDataArray[0]);
                 int left = Integer.parseInt(roomDataArray[1]);
-                finalWorldFrame[left][bot] = characters[currCharacter].getTiles()[3];
+                finalWorldFrame[left][bot] = avatar.getTiles()[3];
                 String loc = bot + "_" + left;
-                if (currCharacter == 0) {
-                    avatarData = bot + "_" + left + "_5"; //y axis, x axis
-                }
-                characters[currCharacter].setLocation(loc);
-                currCharacter += 1;
+                avatarData = bot + "_" + left + "_1"; //y axis, x axis
+                avatar.setLocation(loc);
             }
         }
     }
