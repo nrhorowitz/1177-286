@@ -90,20 +90,57 @@ public class Engine {
 
         String seed = "";
         String moves = "";
+        String currWorld = "";
+
         while (allCommands.possibleNextInput()) {
             char item = allCommands.getNextKey();
-            if (Character.isDigit(item)) {
-                seed += item;
-            } else if (item == 'W' || item == 'A' || item == 'S' || item == 'D') {
-                moves += item;
+            if (item == 'L') {
+                currWorld = Saver.loadWorld();
+                for (char c : currWorld.toCharArray()) {
+                    item = c;
+                    if (Character.isDigit(item)) {
+                        seed += item;
+                    } else if (item == 'S') {
+                        break;
+                    }
+                }
+                inputReturn = generateWorld(seed);
+
+                for (char c : currWorld.toCharArray()) {
+                    if (c == 'W' || c == 'A' || c == 'S' || c == 'D') {
+                        moveCharacter(inputReturn, c, false);
+                    }
+                }
+
+            } else if (item == 'N') {
+                currWorld += item;
+                while (allCommands.possibleNextInput()) {
+                    item = allCommands.getNextKey();
+                    currWorld += item;
+                    if (Character.isDigit(item)) {
+                        seed += item;
+                    } else if (item == 'S') {
+                        break;
+                    }
+                }
+                inputReturn = generateWorld(seed);
+            } else if (item == ':') {
+                Saver.saveWorld(currWorld);
+                break;
+            }
+            while (allCommands.possibleNextInput()) {
+                item = allCommands.getNextKey();
+                if (item == 'W' || item == 'A' || item == 'S' || item == 'D') {
+                    currWorld += item;
+                    moveCharacter(inputReturn, item, false);
+                } else if (item == ':') {
+                    Saver.saveWorld(currWorld);
+                    break;
+                } else {
+                    System.out.println("Please don't print");
+                }
             }
         }
-
-        inputReturn = generateWorld(seed);
-        for (char move : moves.toCharArray()) {
-            moveCharacter(inputReturn, move, false);
-        }
-
         return inputReturn;
     }
 
@@ -279,6 +316,7 @@ public class Engine {
         // 5) Add floors  (to final world frame)
         // 6) Add walls (option for inefficiency)  helper adjacent  (to final world frame)
         // 7) Big flex owo
+        System.out.println("Generating world");
         this.seed(input);  // 0)
         if (StdRandom.uniform(0, 2) == 0) {
             biome = "A";
