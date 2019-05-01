@@ -59,6 +59,8 @@ public class Tileset {
             new TETile('a', Color.RED, Color.RED, "Trap", PREFIX_PATH + "TRAP_A_2.png");
     public static final TETile ENEMY_A_3 =
             new TETile('a', Color.RED, Color.RED, "Trap", PREFIX_PATH + "TRAP_A_3.png");
+    public static final TETile FLAG_A =
+            new TETile('f', Color.RED, Color.RED, "Flag", PREFIX_PATH + "FLAG_A.png");
 }
 
 

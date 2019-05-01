@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="39d39b75-6062-4f18-baa1-20b8b6b0ef5c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Engine.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Engine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj3/byow/Core/Resources/Lore.png" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/Core/Resources/Lore.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,28 +15,69 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="306" column="48" selection-start-line="306" selection-start-column="48" selection-end-line="306" selection-end-column="48" />
+            <state relative-caret-position="320">
+              <caret line="241" column="18" selection-start-line="241" selection-start-column="18" selection-end-line="241" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#13159#13176#0" expanded="true" />
                 <element signature="method#seed#0;class#Engine#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="192" column="23" lean-forward="true" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+            <state relative-caret-position="292">
+              <caret line="201" column="58" selection-start-line="201" selection-start-column="58" selection-end-line="201" selection-end-column="58" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TETile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2306">
+              <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="62" column="77" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Characters.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -66,13 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>graph</find>
-      <find>locationToAStar</find>
-      <find>locT</find>
-      <find>locToA</find>
-      <find>numOfVerti</find>
-      <find>addFloors</find>
-      <find>locToAStar</find>
       <find>loc</find>
       <find>toggle</find>
       <find>locToASt</find>
@@ -96,6 +129,13 @@
       <find>health</find>
       <find>characters</find>
       <find>_5</find>
+      <find>Astar</find>
+      <find>Hashmap</find>
+      <find>num</find>
+      <find>finalworldframe</find>
+      <find>generateWor</find>
+      <find>Tileset.ENE</find>
+      <find>movement</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -138,10 +178,10 @@
         <option value="$PROJECT_DIR$/proj3/byow/Core/InputString.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java" />
-        <option value="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" />
-        <option value="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/Menu.java" />
+        <option value="$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java" />
         <option value="$PROJECT_DIR$/proj3/byow/Core/Engine.java" />
+        <option value="$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java" />
       </list>
     </option>
   </component>
@@ -212,7 +252,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556714005264" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1556715980173" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -338,7 +378,7 @@
     <frame x="0" y="23" width="1366" height="690" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29531723" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20619336" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -347,8 +387,8 @@
       <window_info id="Learn" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.25250837" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32943144" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.13210702" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39966556" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -357,7 +397,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32943144" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32971507" />
       <window_info anchor="bottom" id="Version Control" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.3197832" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.319398" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -566,16 +606,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TETile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/proj3/byow/ASTAR/bearmaps/hw4/SolverOutcome.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -626,42 +656,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="14" column="8" lean-forward="true" selection-start-line="14" selection-start-column="8" selection-end-line="23" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#500#501#0" expanded="true" />
-            <element signature="e#527#528#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Characters.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Saver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -687,16 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="192" column="23" lean-forward="true" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
@@ -707,14 +691,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/EnemyCharacter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="306" column="48" selection-start-line="306" selection-start-column="48" selection-end-line="306" selection-end-column="48" />
+        <state relative-caret-position="340">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#13159#13176#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Characters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/AvatarCharacter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/Tileset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="62" column="77" selection-start-line="62" selection-start-column="77" selection-end-line="62" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TETile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2306">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/Core/Engine.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="241" column="18" selection-start-line="241" selection-start-column="18" selection-end-line="241" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
             <element signature="method#seed#0;class#Engine#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj3/byow/TileEngine/TERenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="201" column="58" selection-start-line="201" selection-start-column="58" selection-end-line="201" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -29,9 +29,6 @@ public class Engine {
     public static String avatarData;
     String currWorld;
     Characters[] characters; //index 0 == avatar
-    int numOfVertices;
-    Map<String, Integer> locToAStar; //Maps a location to a Integer for AStar
-    Map<Integer, String> AStarToLoc; //Maps a Integer to a location for AStar
     WeightedDirectedGraph wdg;
     private static boolean SLOW = false;
     public static String biome;
@@ -170,9 +167,6 @@ public class Engine {
             } else if (c == 'W' || c == 'S' || c == 'A' || c == 'D') { //UPDATES ACTIVE WORLD
                 moveCharacter(activeWorld, c);
                 ter.renderFrame(activeWorld);
-            } else if (c == 'V') {
-                toggleEnemyPath(activeWorld);
-                ter.renderFrame(activeWorld);
             } else {
                 System.out.println("Movement option not recognized");
                 //throw new IllegalArgumentException("Movement option not recognized");
@@ -245,32 +239,11 @@ public class Engine {
             if (currentHealth == 1) {
                 ter.gameOver();
             }
+        } else if (destination.description().equals("Flag")) {
+            ter.winGame();
         } else {
             //something blocking
             world[leftRight][botTop] = directionalTile;
-        }
-    }
-
-
-    /**
-     * At any given instance return path from enemy to avatar.
-     */
-    public List<Integer> computeSpritePath(Characters c) {
-        EnemyCharacter ec = (EnemyCharacter) c;
-        int spriteLoc = locToAStar.get(ec.getLocation());
-        String[] avatarDataArray = avatarData.split("_");
-        String avatarLocationString = avatarDataArray[0] + "_" + avatarDataArray[1];
-        int avatarLoc = locToAStar.get(avatarLocationString);
-        System.out.println("SPRITE: " + spriteLoc);
-        System.out.println("AVATAR: " + avatarLoc);
-        ShortestPathsSolver<Integer> solver = new AStarSolver<Integer>(wdg, spriteLoc, avatarLoc, 100.0);
-        return (List<Integer>) solver.solution();
-    }
-
-    public void toggleEnemyPath(TETile[][] world) {
-        for (int i = 1; i < characters.length; i += 1) {
-            List<Integer> solution = this.computeSpritePath(characters[i]);
-            System.out.println(solution.toString());
         }
     }
 
@@ -294,97 +267,20 @@ public class Engine {
         fillWater(finalWorldFrame);  // 1) done
         int[][] numRoomSector = numRoomSector();  // 2)
         rooms = computeRoom(numRoomSector);  // 3)
-        locToAStar = new HashMap<String, Integer>();
-        AStarToLoc = new HashMap<Integer, String>();
         addFloors(finalWorldFrame);  // 5)
         //Add vertices to the graph
         addHalls(numRoomSector, finalWorldFrame);
         addWalls(finalWorldFrame);  // 6)
         addWalls(finalWorldFrame);  // 6) for textures
         addWater(finalWorldFrame);  // 7)
-        addVertices(finalWorldFrame);//filling out characters array with characters index 0 = avatar
         createCharacters(NUM_OF_TRAPS);
-        addAvatar(finalWorldFrame, characters[0]); //Adds all characters to the world somewhat randomly
-        //Adds enemy into the world somewhat randomly
+        addAvatar(finalWorldFrame, characters[0]); //Adds avatar to the map somewhat randomly
+        addTraps(finalWorldFrame);
+        addFlag(finalWorldFrame);
+        //Adds traps into the world somewhat randomly
         return finalWorldFrame;
     }
 
-    /**
-     * Adds all the vertices (Integers) into the AStarGraph
-     */
-    private void addVertices(TETile[][] finalWorldFrame) {
-        wdg = new WeightedDirectedGraph(numOfVertices);
-
-        int lefts = 0, rights = 0, tops = 0, bots = 0;
-        int adjTop = 0, adjBot = 0, adjLeft = 0, adjRight = 0;
-
-        Map<String, Integer> countMap = new HashMap<String, Integer>(); //********TEMP
-        for (String coordinates : locToAStar.keySet()) {
-            String[] coordinatesArray = coordinates.split("_");
-            int x = Integer.parseInt(coordinatesArray[1]);
-            int y = Integer.parseInt(coordinatesArray[0]);
-            int[] adjData = adjacent(finalWorldFrame, y, x); //left top right bot/2 = floor
-            for (int i = 0; i < adjData.length; i += 1) {
-                if (adjData[i] >= 2) { //floor or enemy or avatar
-                    if (i == 0) {
-                        int left = x - 1;
-                        String leftKey = y + "_" + left;
-                        wdg.addEdge(locToAStar.get(coordinates), locToAStar.get(leftKey), 1);
-                        lefts += 1;
-                        if (countMap.containsKey(leftKey)) {
-                            countMap.put(leftKey, countMap.get(leftKey) + 1);
-                        } else {
-                            countMap.put(leftKey, 1);
-                        }
-                    } else if (i == 1) {
-                        int top = y + 1;
-                        String topKey = top + "_" + x;
-                        wdg.addEdge(locToAStar.get(coordinates), locToAStar.get(topKey), 1);
-                        tops += 1;
-                        if (countMap.containsKey(topKey)) {
-                            countMap.put(topKey, countMap.get(topKey) + 1);
-                        } else {
-                            countMap.put(topKey, 1);
-                        }
-                    } else if (i == 2) {
-                        int right = x + 1;
-                        String rightKey = y + "_" + right;
-                        wdg.addEdge(locToAStar.get(coordinates), locToAStar.get(rightKey), 1);
-                        rights += 1;
-                        if (countMap.containsKey(rightKey)) {
-                            countMap.put(rightKey, countMap.get(rightKey) + 1);
-                        } else {
-                            countMap.put(rightKey, 1);
-                        }
-                    } else if (i == 3) {
-                        int bot = y - 1;
-                        String botKey = bot + "_" + x;
-                        wdg.addEdge(locToAStar.get(coordinates), locToAStar.get(botKey), 1);
-                        bots += 1;
-                        if (countMap.containsKey(botKey)) {
-                            countMap.put(botKey, countMap.get(botKey) + 1);
-                        } else {
-                            countMap.put(botKey, 1);
-                        }
-                    }
-                } else if (adjData[i] == 1 && i == 1) { //wall
-                    adjTop += 1;
-                } else if (adjData[i] == 1 && i == 3) {
-                    adjBot += 1;
-                } else if (adjData[i] == 1 && i == 0) {
-                    adjLeft += 1;
-                } else if (adjData[i] == 1 && i == 2) {
-                    adjRight += 1;
-                }
-            }
-        }
-        System.out.println(countMap.toString());
-        System.out.println(lefts + " " + rights + " " + tops + " " + bots);
-        System.out.println("Num of tiles with wall on top: " + adjTop);
-        System.out.println("Num of tiles with wall on bot: " + adjBot);
-        System.out.println("Num of tiles with wall on left: " + adjLeft);
-        System.out.println("Num of tiles with wall on right: " + adjRight);
-    }
 
     /**
      * Seed sets StdRandom to the input to create pseudorandom generation.
@@ -445,11 +341,7 @@ public class Engine {
         int h = numRoomSector.length;
         int w = numRoomSector[0].length;
         int hBound = HEIGHT / h;
-        int hRem = HEIGHT - (h * hBound); //extra length to add to one box
         int wBound = WIDTH / w;
-        int wRem = WIDTH - (w * wBound); //extra length to add to one box
-        int hExtendedIndex = StdRandom.uniform(0, h);
-        int wExtendedIndex = StdRandom.uniform(0, w);
         //create boxes (y,x)
         for (int i = 0; i < h; i += 1) {
             for (int j = 0; j < w; j += 1) {
@@ -586,7 +478,6 @@ public class Engine {
      * @param finalWorldFrame of type TETile[][]
      */
     private void addFloors(TETile[][] finalWorldFrame) {
-        numOfVertices = 0;
         for (int i = 0; i < totalSectors; i += 1) {
             if (rooms.containsKey(i)) {
                 String roomData = rooms.get(i);
@@ -605,22 +496,13 @@ public class Engine {
                             String p5 = Tileset.PREFIX_PATH + "FLOOR_" + biome + "_0000.png";
                             TETile add = new TETile(p1, p2, p3, p4, p5);
                             finalWorldFrame[x][y] = add;
-                            String key = y + "_" + x;
-                            if (!locToAStar.containsKey(key)) {
-                                AStarToLoc.put(numOfVertices, key);
-                                locToAStar.put(key, numOfVertices);
-                                numOfVertices += 1;
-                            }
                         }
                     }
                 }
             }
         }
-        System.out.println("NUM: " + numOfVertices);
-        System.out.println("Size of ASTARtoLoc: " + AStarToLoc.size());
-        System.out.println("Size of locToAStar: " + locToAStar.size());
-
     }
+
 
     /** createCharacters fills in the character array with n enemies and 1 avatar
      * Ensure n is never greater than number of raw rooms
@@ -646,11 +528,56 @@ public class Engine {
                 int left = Integer.parseInt(roomDataArray[1]);
                 finalWorldFrame[left][bot] = avatar.getTiles()[3];
                 String loc = bot + "_" + left;
-                avatarData = bot + "_" + left + "_1"; //y axis, x axis
+                avatarData = bot + "_" + left + "_6"; //y axis, x axis
                 avatar.setLocation(loc);
+                break;
             }
         }
     }
+
+    /** addTraps adds traps to the map at specified amount NUM_OF_TRAPS
+     *
+     */
+    private void addTraps(TETile[][] finalWorldFrame) {
+        for (int x = 1; x < WIDTH - 1; x += 1) {
+            for (int y = 1; y < HEIGHT - 1; y += 1) {
+                if (finalWorldFrame[x][y].description().equals("Floor") && NUM_OF_TRAPS > 0) {
+                    if (StdRandom.uniform(0, 30) == 0) {
+                        char p1 = Tileset.ENEMY_A_3.character();
+                        Color p2 = Color.BLACK;
+                        Color p3 = p2;
+                        String p4 = Tileset.ENEMY_A_3.description();
+                        String p5 = Tileset.PREFIX_PATH + "TRAP_" + biome + "_3.png";
+                        TETile add = new TETile(p1, p2, p3, p4, p5);
+                        finalWorldFrame[x][y] = add;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Adds flag to world.
+     * @param world
+     */
+    private void addFlag(TETile[][] world) {
+        boolean found = true;
+        while (found) {
+            int randX = StdRandom.uniform(1, WIDTH-1);
+            int randY = StdRandom.uniform(1, HEIGHT-1);
+            if (world[randX][randY].description().equals("Floor")) {
+                char p1 = Tileset.FLAG_A.character();
+                Color p2 = Color.BLACK;
+                Color p3 = p2;
+                String p4 = Tileset.FLAG_A.description();
+                String p5 = Tileset.PREFIX_PATH + "FLAG_" + biome + ".png";
+                TETile add = new TETile(p1, p2, p3, p4, p5);
+                world[randX][randY] = add;
+                found = false;
+            }
+        }
+    }
+
 
 
     /**

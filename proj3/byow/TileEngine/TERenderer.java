@@ -197,4 +197,14 @@ public class TERenderer {
 
         }
     }
+
+    public void winGame() {
+        StdDraw.picture(40, 20, Tileset.PREFIX_PATH + "WIN.png");
+        StdDraw.show();
+        try {
+            Thread.sleep((long) 360000000);
+        } catch (Exception e) {
+
+        }
+    }
 }
