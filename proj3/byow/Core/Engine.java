@@ -89,15 +89,16 @@ public class Engine {
         TETile[][] inputReturn = new TETile[WIDTH][HEIGHT];
 
         String seed = "";
-        String moves = "";
         String currWorld = "";
 
         while (allCommands.possibleNextInput()) {
             char item = allCommands.getNextKey();
             if (item == 'L') {
                 currWorld = Saver.loadWorld();
-                for (char c : currWorld.toCharArray()) {
-                    item = c;
+                int index = 0;
+                char[] loadedWorld = currWorld.toCharArray();
+                for (index = 0; index < loadedWorld.length; index += 1) {
+                    item = loadedWorld[index];
                     if (Character.isDigit(item)) {
                         seed += item;
                     } else if (item == 'S') {
@@ -106,7 +107,8 @@ public class Engine {
                 }
                 inputReturn = generateWorld(seed);
 
-                for (char c : currWorld.toCharArray()) {
+                for (index += 1; index < loadedWorld.length; index += 1) {
+                    char c = loadedWorld[index];
                     if (c == 'W' || c == 'A' || c == 'S' || c == 'D') {
                         moveCharacter(inputReturn, c, false);
                     }
@@ -307,6 +309,7 @@ public class Engine {
     }
 
     private TETile[][] generateWorld(String input) {
+        System.out.println(input);
         // 0) Set random seed from input
         // 1) Fill everything with nothing (water XD)
         // 2) Given width and height, create a 2 dimensional int array of zones

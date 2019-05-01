@@ -6,7 +6,7 @@ import byow.TileEngine.Tileset;
 public class Saver implements Serializable {
 
     public static void saveWorld(String currWorld) {
-        File f = new File(Tileset.PREFIX_PATH + "save_data.txt");
+        File f = new File( "./save_data.txt");
         try {
             if (!f.exists()) {
                 f.createNewFile();
@@ -24,7 +24,7 @@ public class Saver implements Serializable {
     }
 
     public static String loadWorld() {
-        File f = new File(Tileset.PREFIX_PATH + "save_data.txt");
+        File f = new File("./save_data.txt");
         System.out.println(f.exists());
         if (f.exists()) {
             try {
