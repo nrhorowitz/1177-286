@@ -8,7 +8,6 @@ import java.awt.*;
 public class EnemyCharacter implements Characters {
     private String name;
     private TETile[] tiles;
-    private String data;
 
     public EnemyCharacter(String biome) {
         name = "Trap";
@@ -30,13 +29,5 @@ public class EnemyCharacter implements Characters {
     @Override
     public TETile[] getTiles() {
         return tiles;
-    }
-    @Override
-    public String getLocation() {
-        return data;
-    }
-    @Override
-    public void setLocation(String data) {
-        this.data = data;
     }
 }

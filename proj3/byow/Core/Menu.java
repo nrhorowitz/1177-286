@@ -1,12 +1,11 @@
 package byow.Core;
 
-import edu.princeton.cs.algs4.ST;
 import edu.princeton.cs.introcs.StdDraw;
 import java.awt.*;
 import byow.TileEngine.Tileset;
 
 public class Menu {
-    public final static Font TITLE_FONT = new Font("Arial", Font.BOLD, 30);
+    public static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 30);
     public Menu() {
         drawMe();
     }

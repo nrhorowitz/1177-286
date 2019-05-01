@@ -50,18 +50,23 @@ public class TERenderer {
         StdDraw.clear(new Color(0, 0, 0));
         biome = "";
         hover = Tileset.AVATAR_A_3;
-        currentWorld = null;
+        currentWorld = new TETile[w][h];
         flavor = new HashMap<String, String>();
-        flavor.put("EmptyA", "Ah.. the blue sea. We can see that the sea is blue, yes, very blue.");
+        flavor.put("EmptyA", "Ah.. the blue sea. We can see that the sea is blue," +
+                " yes, very blue.");
         flavor.put("FloorA", "This is green grass. Legends say that the grass is… green.");
-        flavor.put("WallA", "Hm… the bush seems very bushy. I don’t think I can walk through it.");
+        flavor.put("WallA", "Hm… the bush seems very bushy. I don’t think I can walk through " +
+                "it.");
         flavor.put("AvatarA", "Hey! It’s not nice to poke me with the mouse.");
         flavor.put("TrapA", "Seems like Haunter is asleep, best not wake him up!");
         flavor.put("FlagA", "HELP IM LOST :(");
 
-        flavor.put("EmptyB", "Brrrr! When’d it get so chilly? I wonder if my weight can break the ice.");
-        flavor.put("FloorB", "Wowa! These floors are slippery. Walking in a winter wonderland uwu.");
-        flavor.put("WallB", "Hm… the wall is not very bushy. I still don’t think I can walk through though.");
+        flavor.put("EmptyB", "Brrrr! When’d it get so chilly? I wonder if my weight can break " +
+                "the ice.");
+        flavor.put("FloorB", "Wowa! These floors are slippery. Walking in a winter wonderland u" +
+                "wu.");
+        flavor.put("WallB", "Hm… the wall is not very bushy. I still don’t think I can walk thr" +
+                "ough though.");
         flavor.put("AvatarB", "Hey! It’s not nice to poke me with the mouse.");
         flavor.put("TrapB", "Seems like Haunter is asleep, best not wake him up!");
         flavor.put("FlagB", "HELP IM LOST :(");
@@ -146,7 +151,7 @@ public class TERenderer {
         StdDraw.setFont(new Font("Arial", Font.BOLD, 11));
         StdDraw.text(75.0, 36.0, "Biome: " + biome);
         //Health
-        String[] avatarDataArray = Engine.avatarData.split("_");
+        String[] avatarDataArray = Engine.avatarData().split("_");
         int health = Integer.parseInt(avatarDataArray[2]);
         for (int i = 0; i < health; i += 1) {
             StdDraw.picture(71.5 + i, 34.5, Tileset.PREFIX_PATH + "HEALTH_A.png");
@@ -170,7 +175,7 @@ public class TERenderer {
     }
 
     public String flavorText(TETile tile) {
-        String key = tile.description() + Engine.biome;
+        String key = tile.description() + Engine.biome();
         return flavor.get(key);
     }
 
@@ -195,8 +200,10 @@ public class TERenderer {
         StdDraw.show();
         try {
             Thread.sleep((long) 360000000);
-        } catch (Exception e) {
-
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        } catch (InterruptedException e) {
+            System.out.println(e);
         }
     }
 
@@ -205,8 +212,10 @@ public class TERenderer {
         StdDraw.show();
         try {
             Thread.sleep((long) 360000000);
-        } catch (Exception e) {
-
+        } catch (NullPointerException e) {
+            System.out.println(e);
+        } catch (InterruptedException e) {
+            System.out.println(e);
         }
     }
 }

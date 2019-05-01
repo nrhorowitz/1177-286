@@ -1,19 +1,15 @@
 package byow.Core;
 
-import byow.ASTAR.bearmaps.hw4.lectureexample.WeightedDirectedGraph;
 import byow.TileEngine.TERenderer;
 import byow.TileEngine.TETile;
 import byow.TileEngine.Tileset;
-import byow.ASTAR.bearmaps.hw4.*;
 
-import edu.princeton.cs.algs4.StdDraw;
 import edu.princeton.cs.algs4.StdRandom;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
 import java.awt.Color;
 
 public class Engine {
@@ -26,25 +22,12 @@ public class Engine {
     Set<String> pivots;
     Set<String> copy;
     int totalSectors;
-    public static String avatarData;
     String currWorld;
     Characters[] characters; //index 0 == avatar
-    WeightedDirectedGraph wdg;
-    private static boolean SLOW = false;
-    public static String biome;
-
-    /* TODO: --master
-    1) menu show seed inputs --done
-    2) file path????? --done (did relative pathing)
-    3) :Q --done
-    4) Load --done
-    5) line of sight bubble --NOT DONE
-    6) Health ------- 6* heart png --done with display, not done with decrement from avatarData to take damage
-    7) Creative writing --NOT DONE
-    8) avatar / heart / enemy --> resources -- NOT DONE (enemies added but they don't move yet
-    9) Make sure menu doesn't get stuck with invalid inputs --> DONE
-    NOTE: HUD only displays string with delay, --> DONE
-     */
+    private boolean SLOW = false;
+    private static String biome;
+    private static String avatarData;
+    private boolean pastMenu;
 
     /**
      * Method used for exploring a fresh world. This method should handle all inputs,
@@ -153,19 +136,15 @@ public class Engine {
 
     private TETile[][] interactGeneral(Inputs allCommands) {
         TETile[][] activeWorld = new TETile[WIDTH][HEIGHT];
-        //Open menu
         Menu begin = new Menu();
-        //Take in first command: N, L, or Q, if no commands default Quits
         char menuOption = 'I';
-        boolean pastMenu = false;
+        pastMenu = false;
         while (allCommands.possibleNextInput() && !pastMenu) {
             menuOption = allCommands.getNextKey();
-            //Does the appropriate thing depending on menuOption
             if (menuOption == 'N') {
                 pastMenu = true;
                 currWorld = "";
                 currWorld += menuOption;
-                //Generates a random world
                 String seed = "";
                 begin.drawSeed(seed);
                 boolean looking = true;
@@ -183,21 +162,16 @@ public class Engine {
                     }
                 }
                 activeWorld = generateWorld(seed);
-                ter.initialize(WIDTH + 10, HEIGHT);
-                ter.renderFrame(activeWorld);
+                intitializeAndRender(ter, WIDTH + 10, HEIGHT, activeWorld);
             } else if (menuOption == 'L') {
-                SLOW = false;
+                setSlowPastMenu();
                 activeWorld = interactWithInputString(Saver.loadWorld());
-                ter.initialize(WIDTH + 10, HEIGHT);
-                ter.renderFrame(activeWorld);
-                pastMenu = true;
+                intitializeAndRender(ter, WIDTH + 10, HEIGHT, activeWorld);
             } else if (menuOption == 'R') {
                 SLOW = true;
                 activeWorld = slowInputWithString(Saver.loadWorld());
-                ter.initialize(WIDTH + 10, HEIGHT);
-                ter.renderFrame(activeWorld);
-                SLOW = false;
-                pastMenu = true;
+                intitializeAndRender(ter, WIDTH + 10, HEIGHT, activeWorld);
+                setSlowPastMenu();
             } else if (menuOption == 'P') {
                 begin.drawLore();
             } else if (menuOption == 'Q') {
@@ -208,14 +182,14 @@ public class Engine {
                 begin.invalidCommand(menuOption);
             }
         }
-
-        //Commands after world creation
         while (allCommands.possibleNextInput()) {
             if (SLOW) {
                 try {
                     Thread.sleep(150);
-                } catch (Exception e) {
-
+                } catch (NullPointerException e) {
+                    System.out.println("caught" + e);
+                } catch (InterruptedException e) {
+                    System.out.println("caught" + e);
                 }
             }
             char c = allCommands.getNextKey();
@@ -235,12 +209,30 @@ public class Engine {
                 ter.renderFrame(activeWorld);
             } else {
                 System.out.println("Movement option not recognized");
-                //throw new IllegalArgumentException("Movement option not recognized");
             }
             currWorld += c;
         }
-
         return activeWorld;
+    }
+
+    /**
+     * Helper method for rendering.
+     * @param toRender
+     * @param w
+     * @param h
+     * @param world
+     */
+    private void intitializeAndRender(TERenderer toRender, int w, int h, TETile[][] world) {
+        toRender.initialize(w, h);
+        toRender.renderFrame(world);
+    }
+
+    /**
+     * Helper method for rendering.
+     */
+    private void setSlowPastMenu() {
+        SLOW = false;
+        pastMenu = true;
     }
 
     /**
@@ -249,7 +241,6 @@ public class Engine {
      * @param movement character
      */
     public void moveCharacter(TETile[][] world, char movement, boolean render) {
-        //TODO: increment time by 1 for frame counter
         String[] avatarDataArray = avatarData.split("_");
         int botTop = Integer.parseInt(avatarDataArray[0]);
         int leftRight = Integer.parseInt(avatarDataArray[1]);
@@ -290,7 +281,7 @@ public class Engine {
             p5 = Tileset.PREFIX_PATH + "FLOOR_" + biome + "_0000.png";
             TETile add = new TETile(p1, p2, p3, p4, p5);
             world[leftRight][botTop] = add;
-        } else if(destination.description().equals("Trap")) {
+        } else if (destination.description().equals("Trap")) {
             avatarData = destinationY + "_" + destinationX + "_" + avatarDataArray[2];
             if (render) {
                 ter.updateCurrentTile(avatarData);
@@ -600,7 +591,6 @@ public class Engine {
                 finalWorldFrame[left][bot] = avatar.getTiles()[3];
                 String loc = bot + "_" + left;
                 avatarData = bot + "_" + left + "_8"; //y axis, x axis
-                avatar.setLocation(loc);
                 break;
             }
         }
@@ -744,7 +734,8 @@ public class Engine {
                         Color p2 = Color.BLACK;
                         Color p3 = p2;
                         String p4 = Tileset.WALL_A_0000.description();
-                        String p5 = Tileset.PREFIX_PATH + "WALL_" + biome + "_" + texture + ".png";
+                        String p5 = Tileset.PREFIX_PATH + "WALL_" + biome + "_" + texture +
+                                ".png";
                         TETile add = new TETile(p1, p2, p3, p4, p5);
                         finalWorldFrame[w][h] = add;
                     }
@@ -782,6 +773,21 @@ public class Engine {
                 }
             }
         }
-        return;
+    }
+
+    /**
+     * Accessor method for biome.
+     * @return biome
+     */
+    public static String biome() {
+        return biome;
+    }
+
+    /**
+     * Accessor method for avatarData.
+     * @return avatarData
+     */
+    public static String avatarData() {
+        return avatarData;
     }
 }

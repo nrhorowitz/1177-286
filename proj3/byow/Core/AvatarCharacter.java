@@ -8,7 +8,6 @@ import java.awt.*;
 public class AvatarCharacter implements Characters {
     private String name;
     private TETile[] tiles; //0 = left, 1 = top, 2 = right, 3 = bot
-    private String data; //Y_X_lives
 
     public AvatarCharacter(String biome) {
         name = "Avatar";
@@ -30,13 +29,5 @@ public class AvatarCharacter implements Characters {
     @Override
     public TETile[] getTiles() {
         return tiles;
-    }
-    @Override
-    public String getLocation() {
-        return data;
-    }
-    @Override
-    public void setLocation(String data) {
-        this.data = data;
     }
 }

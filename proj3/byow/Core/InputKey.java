@@ -22,10 +22,11 @@ public class InputKey implements Inputs {
                 try {
                     TimeUnit.SECONDS.sleep((long) .01);
                     ter.updateHover(((int) StdDraw.mouseX()) + "_" + ((int) StdDraw.mouseY()));
-                } catch (Exception e) {
-
+                } catch (NullPointerException e) {
+                    System.out.println("caught" + e);
+                } catch (InterruptedException e) {
+                    System.out.println("caught" + e);
                 }
-
             }
         }
     }
