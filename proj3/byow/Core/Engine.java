@@ -185,7 +185,7 @@ public class Engine {
         while (allCommands.possibleNextInput()) {
             if (SLOW) {
                 try {
-                    Thread.sleep(150);
+                    Thread.sleep((long) 0.02);
                 } catch (NullPointerException e) {
                     System.out.println("caught" + e);
                 } catch (InterruptedException e) {
