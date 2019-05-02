@@ -183,8 +183,10 @@ public class TERenderer {
         String[] mouseDataArray = mouseXY.split("_");
         int mouseX = Integer.parseInt(mouseDataArray[0]);
         int mouseY = Integer.parseInt(mouseDataArray[1]);
-        if ((mouseX < width) && (mouseX >= 0) && (mouseY < height) && (mouseY >= 0)) {
+        try {
             hover = currentWorld[mouseX][mouseY];
+        } catch (Exception e) {
+            System.out.println(e);
         }
         this.renderFrame(currentWorld);
     }
